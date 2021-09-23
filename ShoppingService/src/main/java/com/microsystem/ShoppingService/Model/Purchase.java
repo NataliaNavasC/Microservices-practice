@@ -9,22 +9,29 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class ShoppingCart {
+public class Purchase {
     @Id
     @GeneratedValue
     private int id;
-    @Column(unique = true, nullable = false)
+    @Column(unique = true)
     private String userName;
+    private String status;
+    private String paymentMethod;
+    private double total;
     @ElementCollection
     private List<Integer> servicesIds;
 
-    public ShoppingCart(int id, String userName, List<Integer> servicesIds) {
+    public Purchase(int id, String userName, String status, String paymentMethod, double total,
+            List<Integer> servicesIds) {
         this.id = id;
         this.userName = userName;
+        this.status = status;
+        this.paymentMethod = paymentMethod;
+        this.total = total;
         this.servicesIds = servicesIds;
     }
 
-    public ShoppingCart() {
+    public Purchase() {
     }
 
     public int getId() {
@@ -41,6 +48,30 @@ public class ShoppingCart {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
     }
 
     public List<Integer> getServicesIds() {
