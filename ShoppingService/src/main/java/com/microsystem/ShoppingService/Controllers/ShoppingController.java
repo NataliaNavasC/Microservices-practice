@@ -35,7 +35,8 @@ public class ShoppingController {
 
     @RequestMapping(
         value = "/{id}",
-        method = RequestMethod.GET
+        method = RequestMethod.GET,
+        produces = "application/json"
     )
     public ShoppingCart getShoppingCartById(@PathVariable int id){
         return this.shoopingRepository.findById(id).get();
@@ -56,8 +57,7 @@ public class ShoppingController {
     @RequestMapping(
         value="/{id}/services",
         method=RequestMethod.DELETE,
-        consumes = "application/json",
-        produces = "application/json"
+        consumes = "application/json"
     )
     public void deleteFromShoppingCart(@PathVariable int id,@RequestBody int serviceIdToEliminate) {
         ShoppingCart shoppingCartToUpdate = this.shoopingRepository.findById(id).get();
