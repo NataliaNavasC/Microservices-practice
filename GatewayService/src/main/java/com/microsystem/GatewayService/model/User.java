@@ -1,14 +1,14 @@
 package com.microsystem.GatewayService.model;
 
-public class UserDto {
+public class User {
     
     private long id;
     private String username;
     private String token;
 
-    public UserDto(){}
+    public User(){}
 
-    public UserDto(long id, String username, String token) {
+    public User(long id, String username, String token) {
         this.id = id;
         this.username = username;
         this.token = token;

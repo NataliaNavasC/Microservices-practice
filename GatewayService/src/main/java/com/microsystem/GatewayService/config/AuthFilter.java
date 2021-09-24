@@ -1,7 +1,7 @@
 package com.microsystem.GatewayService.config;
 
 import com.google.common.net.HttpHeaders;
-import com.microsystem.GatewayService.model.UserDto;
+import com.microsystem.GatewayService.model.User;
 
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
@@ -33,7 +33,7 @@ public class AuthFilter extends AbstractGatewayFilterFactory<AuthFilter.Config> 
             return webClientBuilder.build()
                     .post()
                     .uri("http://service-users/users/validateToken?token=" + parts[1])
-                    .retrieve().bodyToMono(UserDto.class)
+                    .retrieve().bodyToMono(User.class)
                     .map(userDto -> {
                         exchange.getRequest()
                                 .mutate()
