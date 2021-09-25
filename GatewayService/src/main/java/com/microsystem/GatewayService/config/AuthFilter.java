@@ -5,8 +5,10 @@ import com.microsystem.GatewayService.model.User;
 
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
+import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
+@Component
 public class AuthFilter extends AbstractGatewayFilterFactory<AuthFilter.Config> {
     
     private final WebClient.Builder webClientBuilder;

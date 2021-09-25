@@ -15,9 +15,16 @@ spring:
                     enabled: true
             routes:
                 - id: users-id
-                  uri: lb://users
+                  uri: lb://user-service
                   predicates:
                       Path=/users/**
+                  filters:
+                  - AuthFilter
+                - id: users-signin-id
+                  uri: lb://user-service
+                  predicates:
+                      Path=/login
+                    
 
 eureka:
   client:
