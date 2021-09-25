@@ -17,13 +17,15 @@ spring:
                 - id: users-id
                   uri: lb://user-service
                   predicates:
-                      Path=/users/**
+                      - Path=/users/**
+                      - Method=GET,PUT,DELETE
                   filters:
-                  - AuthFilter
+                    - AuthFilter  
                 - id: users-signin-id
                   uri: lb://user-service
                   predicates:
-                      Path=/login
+                      - Path=/login, /users/**
+                      - Method=POST
                     
 
 eureka:

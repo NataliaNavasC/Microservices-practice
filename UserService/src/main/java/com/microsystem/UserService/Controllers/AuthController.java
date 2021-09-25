@@ -6,17 +6,22 @@ import java.util.Base64;
 import java.util.Date;
 
 import javax.annotation.PostConstruct;
+import javax.ws.rs.core.Response;
 
+import com.microsystem.Response.TokenResponse;
 import com.microsystem.UserService.Model.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
@@ -40,19 +45,24 @@ public class AuthController {
          secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
     }
 
-    @PostMapping(value = "login")
-    public String login(@RequestBody User userCredentials) {
+    @RequestMapping(
+        value = "login",
+        method = RequestMethod.POST,
+        produces = {"application/json"}
+    )
+    public TokenResponse login(@RequestBody User userCredentials) {
         User user = userController.getUserByUsername(userCredentials.getUsername());
         
         if (passwordEncoder.matches(CharBuffer.wrap(userCredentials.getPassword()), user.getPassword())) {
              return createToken(user);
+             
          }
 
         throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
     }
     
-    @GetMapping("validateToken")
-    public String validateToken(@RequestParam String token) {
+    @PostMapping("validateToken")
+    public TokenResponse validateToken(@RequestParam String token) {
         String username = Jwts.parser()
                 .setSigningKey(secretKey)
                 .parseClaimsJws(token)
@@ -62,18 +72,18 @@ public class AuthController {
         return createToken(user);
     }
 
-    private String createToken(User user) {
+    private TokenResponse createToken(User user) {
         Claims claims = Jwts.claims().setSubject(user.getUsername());
 
         Date now = Date.from(Instant.now());
         Date validity = new Date(now.getTime() + 3600000); // 1 hour
-
-        return Jwts.builder()
-                .setClaims(claims)
-                .setIssuedAt(now)
-                .setExpiration(validity)
-                .signWith(SignatureAlgorithm.HS256, secretKey)
-                .compact();
+        String token = Jwts.builder()
+            .setClaims(claims)
+            .setIssuedAt(now)
+            .setExpiration(validity)
+            .signWith(SignatureAlgorithm.HS256, secretKey)
+            .compact();
+        return new TokenResponse(token);
     }
 
     public String encodePassword(String password){
