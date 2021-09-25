@@ -2,8 +2,8 @@ package com.microsystem.UserService.Controllers;
 
 import javax.ws.rs.core.MediaType;
 
-import com.microsystem.Request.RegisterProviderForm;
-import com.microsystem.Request.RegisterTouristForm;
+import com.microsystem.UserService.Request.RegisterProviderForm;
+import com.microsystem.UserService.Request.RegisterTouristForm;
 import com.microsystem.UserService.Model.ProviderDTO;
 import com.microsystem.UserService.Model.TouristDTO;
 import com.microsystem.UserService.Model.User;

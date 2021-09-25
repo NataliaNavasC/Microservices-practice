@@ -1,4 +1,4 @@
-package com.microsystem.Request;
+package com.microsystem.UserService.Request;
 
 public class RegisterTouristForm{
     
