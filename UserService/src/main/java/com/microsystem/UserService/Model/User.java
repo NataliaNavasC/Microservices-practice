@@ -1,21 +1,28 @@
 package com.microsystem.UserService.Model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "user_account")
 public class User {
 
+    @Id
     @GeneratedValue
     private long id;
+    @Column(unique = true)
     private String username;
     private String password;
 
     public User(){}
 
-    public User(long id, String username) {
+    public User(long id, String username, String password) {
         this.id = id;
         this.username = username;
+        this.password = password;
     }
 
     public long getId() {
