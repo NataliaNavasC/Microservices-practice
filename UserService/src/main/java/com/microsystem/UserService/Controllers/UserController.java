@@ -2,10 +2,16 @@ package com.microsystem.UserService.Controllers;
 
 import javax.ws.rs.core.MediaType;
 
+import com.microsystem.Request.RegisterProviderForm;
+import com.microsystem.Request.RegisterTouristForm;
+import com.microsystem.UserService.Model.ProviderDTO;
+import com.microsystem.UserService.Model.TouristDTO;
 import com.microsystem.UserService.Model.User;
 import com.microsystem.UserService.Repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 @RestController
 @RequestMapping(value = "/users")
@@ -26,6 +33,16 @@ public class UserController {
 
     @Autowired
     Environment environment;
+
+    @Autowired
+    RestTemplate restTemplate;
+
+    @Bean
+    @LoadBalanced
+    RestTemplate restTemplate(){
+        return new RestTemplate();
+    }
+
 
 
     @RequestMapping(
@@ -42,12 +59,28 @@ public class UserController {
         return userRepository.findByUsername(username);
     }
 
-    
-    @PostMapping
-    public User registerUser(@RequestBody User user){
+    @PostMapping(value = "/tourists")
+    public TouristDTO registerTourist(@RequestBody RegisterTouristForm form){
+        User user = new User(0,form.getUsername(), form.getPassword());
         String password = authController.encodePassword(user.getPassword());
         user.setPassword(password);
-        return userRepository.save(user);
+        userRepository.save(user);
+        TouristDTO touristRequest = new TouristDTO(form.getUsername(), form.getName(), form.getAge(), form.getPhoto());
+        // Tourist server conection
+        TouristDTO touristResponse = restTemplate.postForObject("http://tourists-service/tourists", touristRequest, TouristDTO.class);
+        return touristResponse;
+    }
+
+    @PostMapping(value = "/providers")
+    public ProviderDTO registerTourist(@RequestBody RegisterProviderForm form){
+        User user = new User(0,form.getUsername(), form.getPassword());
+        String password = authController.encodePassword(user.getPassword());
+        user.setPassword(password);
+        userRepository.save(user);
+        ProviderDTO providerRequest = new ProviderDTO(form.getUsername(), form.getName(), form.getAge(), form.getPhoto(), form.getPhoneNumber(), form.getWebPage(), form.getSocialNetwork());
+        // Tourist server conection
+        ProviderDTO providerResponse = restTemplate.postForObject("http://providers-service/tourists", providerRequest, ProviderDTO.class);
+        return providerResponse;
     }
 
 

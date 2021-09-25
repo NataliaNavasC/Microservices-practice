@@ -1,37 +1,20 @@
-package com.microsystem.TouristService.Model;
+package com.microsystem.UserService.Model;
 
-import javax.persistence.*;
+public class TouristDTO {
 
-@Entity
-public class Customer {
-    @Id
-    @GeneratedValue
-    private int ID;
-    @Column(unique = true)
     private String username;
     private String name;
     private int age;
-    private String password;
     private String photo;
 
-    public Customer() {
+    public TouristDTO() {
     }
 
-    public Customer(int ID, String username, String name, int age, String password, String photo) {
-        this.ID = ID;
+    public TouristDTO(String username, String name, int age, String photo) {
         this.username = username;
         this.name = name;
         this.age = age;
-        this.password = password;
         this.photo = photo;
-    }
-
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
     }
 
     public String getUsername() {
@@ -56,14 +39,6 @@ public class Customer {
 
     public void setAge(int age) {
         this.age = age;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getPhoto() {

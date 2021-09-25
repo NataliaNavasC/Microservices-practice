@@ -1,4 +1,4 @@
-package com.microsystem.tripservice.Model;
+package com.microsystem.tourismServicesService.Model;
 
 
 import javax.persistence.Entity;
@@ -6,7 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Service {
+public class TourismService {
     @Id
     @GeneratedValue
     private int id;
@@ -15,7 +15,7 @@ public class Service {
     private String description;
     //private List<String> items;
 
-    public Service(int id, String title, double price, String description) {
+    public TourismService(int id, String title, double price, String description) {
         this.id = id;
         this.title = title;
         this.price = price;
@@ -23,7 +23,7 @@ public class Service {
         //this.items = items;
     }
 
-    public Service() {
+    public TourismService() {
     }
 
     public int getId() {

@@ -1,35 +1,22 @@
-package com.microsystem.TouristService.Model;
+package com.microsystem.Request;
 
-import javax.persistence.*;
-
-@Entity
-public class Tourist {
-    @Id
-    @GeneratedValue
-    private int ID;
-    @Column(unique = true)
+public class RegisterTouristForm{
+    
     private String username;
     private String name;
     private int age;
     private String photo;
+    private String password;
 
-    public Tourist() {
+    public RegisterTouristForm() {
     }
 
-    public Tourist(int ID, String username, String name, int age, String photo) {
-        this.ID = ID;
+    public RegisterTouristForm(String username, String name, int age, String photo, String password) {
         this.username = username;
         this.name = name;
         this.age = age;
         this.photo = photo;
-    }
-
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
+        this.password = password;
     }
 
     public String getUsername() {
@@ -63,4 +50,17 @@ public class Tourist {
     public void setPhoto(String photo) {
         this.photo = photo;
     }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    
+    
 }
+
+

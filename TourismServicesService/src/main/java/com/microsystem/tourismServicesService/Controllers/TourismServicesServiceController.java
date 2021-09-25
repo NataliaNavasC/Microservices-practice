@@ -1,7 +1,7 @@
-package com.microsystem.tripservice.Controllers;
+package com.microsystem.tourismServicesService.Controllers;
 
-import com.microsystem.tripservice.Model.Service;
-import com.microsystem.tripservice.Repository.ITripServiceRepository;
+import com.microsystem.tourismServicesService.Model.TourismService;
+import com.microsystem.tourismServicesService.Repository.ITourismServicesServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.MediaType;
@@ -11,26 +11,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-public class TripsServiceController {
+public class TourismServicesServiceController {
     @Autowired
     private Environment environment;
     @Autowired
-    private ITripServiceRepository tripServiceRepository;
+    private ITourismServicesServiceRepository tourismServiceRepository;
 
     @RequestMapping(
             value = "/services",
             method = RequestMethod.GET
     )
-    public List<Service> getServices(){
-        return this.tripServiceRepository.findAll();
+    public List<TourismService> getServices(){
+        return this.tourismServiceRepository.findAll();
     }
     @RequestMapping(
             value = "/services/{id}",
             method = RequestMethod.GET,
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
     )
-    public Service getService(@PathVariable int id){
-        return this.tripServiceRepository.findById(id).get();
+    public TourismService getService(@PathVariable int id){
+        return this.tourismServiceRepository.findById(id).get();
     }
     
     @RequestMapping(
@@ -38,8 +38,8 @@ public class TripsServiceController {
             method = RequestMethod.GET,
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
     )
-    public List<Service> getServicesOfType(@PathVariable String category){
-        List<Service> services = new ArrayList<Service>();
+    public List<TourismService> getServicesOfType(@PathVariable String category){
+        List<TourismService> services = new ArrayList<TourismService>();
         return services; 
     }
 
@@ -49,8 +49,8 @@ public class TripsServiceController {
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
     )
-    public Service createService(@RequestBody Service newService){
-        return this.tripServiceRepository.save(newService);
+    public TourismService createService(@RequestBody TourismService newService){
+        return this.tourismServiceRepository.save(newService);
     }
 
     @RequestMapping(
@@ -59,16 +59,16 @@ public class TripsServiceController {
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
     )
-    public Service updateService(@RequestParam int id,@RequestBody Service updatedService){
-        Service serviceToUpdate = this.tripServiceRepository.findById(id).get();
+    public TourismService updateService(@RequestParam int id,@RequestBody TourismService updatedService){
+        TourismService serviceToUpdate = this.tourismServiceRepository.findById(id).get();
         serviceToUpdate.setTitle(updatedService.getTitle());
         serviceToUpdate.setDescription(updatedService.getDescription());
         serviceToUpdate.setPrice(updatedService.getPrice());
-        return this.tripServiceRepository.save(serviceToUpdate);
+        return this.tourismServiceRepository.save(serviceToUpdate);
     }
 
     @DeleteMapping("/services/{id}")
     public void deleteService(@PathVariable int id){
-        this.tripServiceRepository.deleteById(id);
+        this.tourismServiceRepository.deleteById(id);
     }
 }
