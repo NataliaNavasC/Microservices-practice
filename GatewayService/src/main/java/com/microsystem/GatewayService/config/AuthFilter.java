@@ -1,8 +1,7 @@
 package com.microsystem.GatewayService.config;
 
 import com.google.common.net.HttpHeaders;
-import com.microsystem.GatewayService.model.User;
-import com.microsystem.Response.TokenResponse;
+import com.microsystem.GatewayService.Response.TokenResponse;
 
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;

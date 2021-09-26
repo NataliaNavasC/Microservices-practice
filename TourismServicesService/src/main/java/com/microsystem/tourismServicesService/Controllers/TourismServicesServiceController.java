@@ -18,6 +18,15 @@ public class TourismServicesServiceController {
     private ITourismServicesServiceRepository tourismServiceRepository;
 
     @RequestMapping(
+            value = "/status",
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public String getStatus(){
+        String port = environment.getProperty("local.server.port");
+        return "Server is up on port " + port;
+    }
+
+    @RequestMapping(
             value = "/services",
             method = RequestMethod.GET
     )

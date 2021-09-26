@@ -47,7 +47,7 @@ public class UserController {
 
     @RequestMapping(
         value = "/status",
-        produces = MediaType.APPLICATION_JSON 
+        produces = MediaType.APPLICATION_JSON
     )
     public String getStatus(){
         String port = environment.getProperty("local.server.port");

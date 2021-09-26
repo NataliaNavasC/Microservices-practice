@@ -1,4 +1,4 @@
-package com.microsystem.Response;
+package com.microsystem.GatewayService.Response;
 
 public class TokenResponse {
     

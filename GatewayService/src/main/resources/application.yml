@@ -57,7 +57,6 @@ spring:
                       - Path=/tourists/**
                   filters:
                     - AuthFilter
-                    
 
 eureka:
   client:

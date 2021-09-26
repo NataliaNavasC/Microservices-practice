@@ -20,6 +20,18 @@ public class ProvidersController {
     @Autowired
     private IProvidersRepostitory providersRepostitory;
 
+    @Autowired
+    Environment environment;
+
+    @RequestMapping(
+        value = "/providers/status",
+        produces = MediaType.APPLICATION_JSON 
+    )
+    public String getStatus(){
+        String port = environment.getProperty("local.server.port");
+        return "Server is up on port " + port;
+    }
+
     @PostMapping("/providers")
     @Consumes(MediaType.APPLICATION_JSON)
     public ResponseEntity createProvider(@RequestBody ProviderRequest providerRequest){
