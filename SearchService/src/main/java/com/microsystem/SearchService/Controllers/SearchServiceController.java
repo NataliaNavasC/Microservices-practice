@@ -2,6 +2,7 @@ package com.microsystem.SearchService.Controllers;
 
 import java.util.List;
 
+import com.microsystem.SearchService.Model.TourismServiceEntity;
 import com.microsystem.SearchService.Repository.TourismServiceRepository;
 import com.netflix.discovery.converters.Auto;
 
@@ -33,23 +34,18 @@ public class SearchServiceController {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "SearchService")
     @ResponsePayload
     public TourismServiceReponse SearchService(@RequestPayload SearchServiceRequest searchServiceRequest){
-        List<TourismService> servicesFound  = new ArrayList<TourismService>();
-        if(searchServiceRequest.getSearchType() == "title"){
-            this.repository.findByTitle(searchServiceRequest.getParameter()).forEach(servicesFound::add);
-        }
-
-        else if(searchServiceRequest.getSearchType() == "type"){
-            List<TourismService> aux = new ArrayList<TourismService>();
-            this.repository.findAll().forEach(aux::add);
-            for (TourismService tourismService : aux) {
-                if(aux instanceof  )
-            }
-            servicesFound.forEach(this.repository.findByType());
-        }
-        
-        TourismService service = factory.createTourismService();
+        List<TourismServiceEntity> entities = repository.findByTitle(searchServiceRequest.getParameter());
         TourismServiceReponse response = factory.createTourismServiceReponse();
-        response.getService().forEach(servicesFound::add);
+        for (TourismServiceEntity serviceEntity : entities) {
+            TourismService service = factory.createTourismService();
+            service.setTitle(serviceEntity.getTitle());
+            service.setDescription(serviceEntity.getDescription());
+            service.setPrice(serviceEntity.getPrice());
+            service.setId(serviceEntity.getId());
+            service.setServiceType(serviceEntity.getServiceType());
+            service.setProviderId(serviceEntity.getProviderId());
+            response.getService().add(service);
+        }
         return response;
     }
 }

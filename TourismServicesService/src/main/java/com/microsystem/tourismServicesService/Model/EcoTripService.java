@@ -11,26 +11,23 @@ public class EcoTripService extends TourismService {
     private String location;
 
     public EcoTripService() {
-        super.setServiceType("ECO_TRIP");
+        super.setServiceType("ecoTrip");
     }
 
     public EcoTripService(int duration, boolean hasGuide, String location) {
         this.duration = duration;
         this.hasGuide = hasGuide;
         this.location = location;
-        super.setServiceType("ECO_TRIP");
+        super.setServiceType("ecoTrip");
     }
-
     
-
-
     public EcoTripService(int id, String title, double price, String description, List<String> items,
             String serviceType, int providerId, int duration, boolean hasGuide, String location) {
         super(id, title, price, description, items, serviceType, providerId);
         this.duration = duration;
         this.hasGuide = hasGuide;
         this.location = location;
-        super.setServiceType("ECO_TRIP");
+        super.setServiceType("ecoTrip");
     }
 
     public int getDuration() {

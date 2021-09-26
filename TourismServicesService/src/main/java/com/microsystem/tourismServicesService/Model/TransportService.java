@@ -15,7 +15,7 @@ public class TransportService extends TourismService {
     private String destination;
 
     public TransportService() {
-        super.setServiceType("TRANSPORT_SERVICE");
+        super.setServiceType("transport");
     }
 
     public TransportService(Date departureDate, Date arrivalDate, String transportType, String depature,
@@ -25,7 +25,7 @@ public class TransportService extends TourismService {
         this.transportType = transportType;
         this.depature = depature;
         this.destination = destination;
-        super.setServiceType("TRANSPORT_SERVICE");
+        super.setServiceType("transport");
     }
 
     public TransportService(int id, String title, double price, String description, List<String> items,
@@ -37,7 +37,7 @@ public class TransportService extends TourismService {
         this.transportType = transportType;
         this.depature = depature;
         this.destination = destination;
-        super.setServiceType("TRANSPORT_SERVICE");
+        super.setServiceType("transport");
     }
 
 

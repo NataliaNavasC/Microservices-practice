@@ -14,14 +14,14 @@ public class AccomodationService extends TourismService {
     private String location;
 
     public AccomodationService(){
-        super.setServiceType("ACCOMODATION");
+        super.setServiceType("accomodation");
     }
     
     public AccomodationService(Date checkInDate, Date checkOutDate, String location) {
         this.checkInDate = checkInDate;
         this.checkOutDate = checkOutDate;
         this.location = location;
-        super.setServiceType("ACCOMODATION");
+        super.setServiceType("accomodation");
     }
 
     
@@ -32,7 +32,7 @@ public class AccomodationService extends TourismService {
         this.checkInDate = checkInDate;
         this.checkOutDate = checkOutDate;
         this.location = location;
-        super.setServiceType("ACCOMODATION");
+        super.setServiceType("accomodation");
     }
 
     public Date getCheckInDate() {
