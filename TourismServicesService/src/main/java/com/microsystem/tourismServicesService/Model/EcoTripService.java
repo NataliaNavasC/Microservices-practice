@@ -1,7 +1,9 @@
 package com.microsystem.tourismServicesService.Model;
 
 import java.util.List;
+import javax.persistence.Entity;
 
+@Entity
 public class EcoTripService extends TourismService {
     
     private int duration;
