@@ -48,7 +48,15 @@ public class ProvidersController {
     @PostMapping("/providers")
     @Consumes(MediaType.APPLICATION_JSON)
     public ResponseEntity createProvider(@RequestBody ProviderRequest providerRequest){
-        Provider provider = new Provider(providerRequest.getPhoneNumber(),providerRequest.getWebPage(),providerRequest.getSocialNetwork());
+        Provider provider = new Provider(
+                providerRequest.getName(),
+                providerRequest.getUserName(),
+                providerRequest.getAge(),
+                providerRequest.getPhoto(),
+                providerRequest.getDescription(),
+                providerRequest.getPhoneNumber(),
+                providerRequest.getWebPage(),
+                providerRequest.getSocialNetwork());
         providersRepostitory.save(provider);
         return ResponseEntity.status(HttpStatus.CREATED).body("Creado Correctamente");
     }
@@ -65,7 +73,14 @@ public class ProvidersController {
         Optional<Provider> optionalProvider = providersRepostitory.findById(idProvider);
         if(optionalProvider.isPresent()){
             Provider provider = optionalProvider.get();
-            provider.updateProvider(providerRequest.getPhoneNumber(),providerRequest.getWebPage(),providerRequest.getSocialNetwork());
+            provider.updateProvider(
+                    providerRequest.getName(),
+                    providerRequest.getAge(),
+                    providerRequest.getPhoto(),
+                    providerRequest.getDescription(),
+                    providerRequest.getPhoneNumber(),
+                    providerRequest.getWebPage(),
+                    providerRequest.getSocialNetwork());
             providersRepostitory.save(provider);
             return ResponseEntity.status(HttpStatus.ACCEPTED).body("Se actualizo el proveedor");
         }else{
