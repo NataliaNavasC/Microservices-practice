@@ -1,4 +1,4 @@
-package com.microsystem.tourismServicesService.Model;
+package com.microsystem.SearchService.Model;
 
 import java.util.Date;
 import java.util.List;
