@@ -7,25 +7,30 @@ import javax.persistence.Entity;
 @Entity
 public class FoodService extends TourismService{
     
-    private String type;
+    private String foodType;
 
-    public FoodService(){}
-   
-    public FoodService(String type) {
-        this.type = type;
+    public FoodService(){
+        super.setServiceType("FOOD_SERVICE");
+    }
+    
+
+    public FoodService(String foodType) {
+        this.foodType = foodType;
+        super.setServiceType("FOOD_SERVICE");
     }
 
-    public FoodService(int id, String title, double price, String description, List<String> items, String type) {
-        super(id, title, price, description, items);
-        this.type = type;
+    public FoodService(int id, String title, double price, String description, List<String> items, String serviceType,
+            int providerId, String foodType) {
+        super(id, title, price, description, items, serviceType, providerId);
+        this.foodType = foodType;
+        super.setServiceType("FOOD_SERVICE");
     }
-
 
     public String getType() {
-        return type;
+        return foodType;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setType(String foodType) {
+        this.foodType = foodType;
     }
 }

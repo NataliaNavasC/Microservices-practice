@@ -1,7 +1,8 @@
-package com.microsystem.SearchService.Model;
+package com.microsystem.tourismServicesService.Model;
 
 import java.util.Date;
 import java.util.List;
+
 
 import javax.persistence.Entity;
 
@@ -10,26 +11,29 @@ public class AccomodationService extends TourismService {
     
     private Date checkInDate;
     private Date checkOutDate;
-    private Location location;
+    private String location;
 
-    public AccomodationService(){}
+    public AccomodationService(){
+        super.setServiceType("ACCOMODATION");
+    }
+    
+    public AccomodationService(Date checkInDate, Date checkOutDate, String location) {
+        this.checkInDate = checkInDate;
+        this.checkOutDate = checkOutDate;
+        this.location = location;
+        super.setServiceType("ACCOMODATION");
+    }
 
     
+
     public AccomodationService(int id, String title, double price, String description, List<String> items,
-            Date checkInDate, Date checkOutDate, Location location) {
-        super(id, title, price, description, items);
+            String serviceType, int providerId, Date checkInDate, Date checkOutDate, String location) {
+        super(id, title, price, description, items, serviceType, providerId);
         this.checkInDate = checkInDate;
         this.checkOutDate = checkOutDate;
         this.location = location;
+        super.setServiceType("ACCOMODATION");
     }
-
-
-    public AccomodationService(Date checkInDate, Date checkOutDate, Location location) {
-        this.checkInDate = checkInDate;
-        this.checkOutDate = checkOutDate;
-        this.location = location;
-    }
-
 
     public Date getCheckInDate() {
         return checkInDate;
@@ -43,10 +47,10 @@ public class AccomodationService extends TourismService {
     public void setCheckOutDate(Date checkOutDate) {
         this.checkOutDate = checkOutDate;
     }
-    public Location getLocation() {
+    public String getLocation() {
         return location;
     }
-    public void setLocation(Location location) {
+    public void setLocation(String location) {
         this.location = location;
     }
 

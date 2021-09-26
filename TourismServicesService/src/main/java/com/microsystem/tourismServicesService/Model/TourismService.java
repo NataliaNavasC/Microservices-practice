@@ -3,13 +3,11 @@ package com.microsystem.tourismServicesService.Model;
 
 import java.util.List;
 
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
-public class TourismService {
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class TourismService {
     @Id
     @GeneratedValue
     private int id;
@@ -18,17 +16,23 @@ public class TourismService {
     private String description;
     @ElementCollection
     private List<String> items;
+    private String serviceType;
+    private int providerId;
 
     
     public TourismService() {
     }
     
-    public TourismService(int id, String title, double price, String description, List<String>items) {
+    
+    public TourismService(int id, String title, double price, String description, List<String> items,
+            String serviceType, int providerId) {
         this.id = id;
         this.title = title;
         this.price = price;
         this.description = description;
         this.items = items;
+        this.serviceType = serviceType;
+        this.providerId = providerId;
     }
 
 
@@ -71,5 +75,25 @@ public class TourismService {
     public void setItems(List<String> items) {
         this.items = items;
     }
+
+    public String getServiceType() {
+        return serviceType;
+    }
+
+    public void setServiceType(String serviceType) {
+        this.serviceType = serviceType;
+    }
+
+
+    public int getProviderId() {
+        return providerId;
+    }
+
+
+    public void setProviderId(int providerId) {
+        this.providerId = providerId;
+    }
+    
+    
     
 }

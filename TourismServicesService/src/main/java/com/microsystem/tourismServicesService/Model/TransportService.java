@@ -11,29 +11,37 @@ public class TransportService extends TourismService {
     private Date departureDate;
     private Date arrivalDate;
     private String transportType;
-    private Location depature;
-    private Location destination;
+    private String depature;
+    private String destination;
 
-    public TransportService() {}
+    public TransportService() {
+        super.setServiceType("TRANSPORT_SERVICE");
+    }
+
+    public TransportService(Date departureDate, Date arrivalDate, String transportType, String depature,
+            String destination) {
+        this.departureDate = departureDate;
+        this.arrivalDate = arrivalDate;
+        this.transportType = transportType;
+        this.depature = depature;
+        this.destination = destination;
+        super.setServiceType("TRANSPORT_SERVICE");
+    }
 
     public TransportService(int id, String title, double price, String description, List<String> items,
-            Date departureDate, Date arrivalDate, String transportType, Location depature, Location destination) {
-        super(id, title, price, description, items);
+            String serviceType, int providerId, Date departureDate, Date arrivalDate, String transportType,
+            String depature, String destination) {
+        super(id, title, price, description, items, serviceType, providerId);
         this.departureDate = departureDate;
         this.arrivalDate = arrivalDate;
         this.transportType = transportType;
         this.depature = depature;
         this.destination = destination;
+        super.setServiceType("TRANSPORT_SERVICE");
     }
-    
-    public TransportService(Date departureDate, Date arrivalDate, String transportType, Location depature,
-            Location destination) {
-        this.departureDate = departureDate;
-        this.arrivalDate = arrivalDate;
-        this.transportType = transportType;
-        this.depature = depature;
-        this.destination = destination;
-    }
+
+
+
     public Date getDepartureDate() {
         return departureDate;
     }
@@ -52,16 +60,16 @@ public class TransportService extends TourismService {
     public void setTransportType(String transportType) {
         this.transportType = transportType;
     }
-    public Location getDepature() {
+    public String getDepature() {
         return depature;
     }
-    public void setDepature(Location depature) {
+    public void setDepature(String depature) {
         this.depature = depature;
     }
-    public Location getDestination() {
+    public String getDestination() {
         return destination;
     }
-    public void setDestination(Location destination) {
+    public void setDestination(String destination) {
         this.destination = destination;
     }
 
