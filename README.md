@@ -28,7 +28,7 @@ De forma general, utilice el siguiente comando para correr cualquier servicio:
 > mvn clean install spring-boot:run
 1. Ejecutar el eureka server
 2. Ejecutar los demás servicios (al ser independientes, el orden es irrelevante)
-3. Consumir el servicio requerido. 
+3. Una vez todos los servicios estén en línea, ya puede consumirlos. 
 
 ### Consumo de servicios
 El consumo de los servicios se resume en las siguientes tablas:
@@ -83,6 +83,8 @@ El consumo de los servicios se resume en las siguientes tablas:
 
 ## Cliente
 Como cliente, se presenta una colección de postman donde se exponen todos los puntos de acceso mostrados anteriormente. 
+
+Pasos para utilizar el cliente:
 1. Ubique la colección postman en la ruta **"/MicroTravels/MicroTravels REST API.postman_collection.json"**
 2. Descargue la colección
 3. Importe la colección en postman
