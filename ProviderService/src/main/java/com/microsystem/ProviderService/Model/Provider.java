@@ -20,12 +20,22 @@ public class Provider {
     }
 
     public Provider(String phoneNumber, String webPage, String socialNetwork) {
-        //TODO: Analizar y arrojar errores
         this.phoneNumber = phoneNumber;
         this.webPage = webPage;
         this.socialNetwork = socialNetwork;
     }
 
+    public void updateProvider(String phoneNumber, String webPage, String socialNetwork){
+        if(this.phoneNumber!=phoneNumber){
+            this.phoneNumber = phoneNumber;
+        }
+        if(this.webPage!=webPage){
+            this.webPage = webPage;
+        }
+        if(this.socialNetwork!=socialNetwork){
+            this.socialNetwork = socialNetwork;
+        }
+    }
     public int getID() {
         return id_Provider;
     }
