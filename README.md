@@ -4,6 +4,12 @@ A continuación se detallan la instrucciones de instalación y ejecución del se
 
 
 ## Servidor
+### ¿Cómo instalar el servidor?
+Para la instalación debe clonar el repositorio y, adicional a ello, tener los siguientes requisitos de software:
+* Java 11 o superior
+* Maven 3.8.2
+
+## ¿Cómo ejecutar el servidor?
 El servidor consta de 9 servicios los cuales se ejecutan por defecto en los siguientes puertos:
 
 |       Servicio       | Puerto por defecto |
@@ -18,12 +24,6 @@ El servidor consta de 9 servicios los cuales se ejecutan por defecto en los sigu
 |    questions-service    |          3330          |
 |     search-service      |          2220          |
 
-### ¿Cómo instalar el servidor?
-Para la instalación debe clonar el repositorio y, adicional a ello, tener los siguientes requisitos de software:
-* Java 11 o superior
-* Maven 3.8.2
-
-## ¿Cómo ejecutar el servidor?
 De forma general, utilice el siguiente comando para correr cualquier servicio: 
 > mvn clean install spring-boot:run
 1. Ejecutar el eureka server
