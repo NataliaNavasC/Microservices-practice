@@ -68,8 +68,8 @@ El consumo de los servicios se resume en las siguientes tablas:
 | Crear carrito de compras | POST | http://localhost:9990/shopping-cart |
 | Obtener carrito de compras | GET |  http://localhost:9990/shopping-cart/{id} |
 | Añadir servicio al carrito de compras | POST | http://localhost:9990/shopping-cart/{id}/services |
-| Eliminar servicio del carrito de compras | DELETE |  http://localhost:9990/shopping-cart/{id}/services} |
-| Realizar pago | POST |  http://localhost:9990/shopping-cart/{id}/payment} |
+| Eliminar servicio del carrito de compras | DELETE |  http://localhost:9990/shopping-cart/{id}/services |
+| Realizar pago | POST |  http://localhost:9990/shopping-cart/{id}/payment |
 
 #### Servicios de preguntas
 | Operación | HTTP Request | URL |
@@ -82,4 +82,9 @@ El consumo de los servicios se resume en las siguientes tablas:
 |:--------|:-----------|:-----------|
 
 ## Cliente
-Como cliente, se presenta una colección de postman donde se exponen todos los puntos de acceso mostrados anteriormente
+Como cliente, se presenta una colección de postman donde se exponen todos los puntos de acceso mostrados anteriormente. 
+1. Ubique la colección postman en la ruta **"/MicroTravels/MicroTravels REST API.postman_collection.json"**
+2. Descargue la colección
+3. Importe la colección en postman
+4. Ejecute las peticiones requeridas
+5. En caso de ser necesario, cambie el body de las peticiones o los parámetros de las Uris
