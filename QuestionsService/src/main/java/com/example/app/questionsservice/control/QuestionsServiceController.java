@@ -17,8 +17,8 @@ public class QuestionsServiceController {
     @Autowired
     private QuestionRepository repo;
 
-    @GetMapping("/services/{id}/questions")
-    public List<Question> getQuestions(@PathVariable("id") int serviceId) {
+    @GetMapping("/services/questions")
+    public List<Question> getQuestions(@RequestParam(name = "serviceID") int serviceId) {
         List<Question> questions = new ArrayList<>();
 
         //TODO: Consumir un servicio de ServicesService que verifique que el servicio existe en la BD
@@ -33,13 +33,13 @@ public class QuestionsServiceController {
         return questions;
     }
 
-    @PostMapping("/services/{id}/questions")
-    public Question postQuestion(@PathVariable("id") int serviceId, @RequestBody Question question) {
+    @PostMapping("/services/questions")
+    public Question postQuestion(@RequestBody Question question) {
 
         //TODO: Consumir un servicio de ServicesService que verifique que el servicio existe en la BD
 
         //Si el servicio si existe se agrega la nueva pregunta con ese serviceId
-        return repo.save(new Question(serviceId, question.getDescription(), question.getResponse()));
+        return repo.save(new Question(question.getServiceId(), question.getDescription(), question.getResponse()));
 
         //TODO: Retornar un 404 NOT FOUND si el servicio no existe
     }
