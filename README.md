@@ -89,8 +89,7 @@ El consumo de los servicios se resume en las siguientes tablas:
 | Obtener preguntas de un servicio  | GET |  http://localhost:9990/questions?serviceID={id} |
 
 #### Servicios de búsqueda
-| Operación | HTTP Request | URL |
-|:--------|:-----------|:-----------|
+Este es un servicio SOAP, para poder consumirlo, remitirse al apartado de cliente.
 
 ## Cliente
 Como cliente, se presenta una colección de postman donde se exponen todos los puntos de acceso mostrados anteriormente. 
