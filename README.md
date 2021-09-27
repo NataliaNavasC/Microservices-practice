@@ -80,7 +80,7 @@ Provee todos los servicios requeridos para la gestión de los servicios de turis
 #### Servicios de compra
 Provee todos los servicios requeridos para el manejo del carrito de compras y la realización del pago
 * Crear carrito de compra
-* Obtener carrito de compra por id
+* Obtener carrito de compra dado un nombre de usuario
 * Añadir un servicio al carrito de compras
 * Eliminar un servicio del carrito de compras
 * Realizar pago
