@@ -50,7 +50,7 @@ public class ProvidersController {
     public ResponseEntity createProvider(@RequestBody ProviderRequest providerRequest){
         Provider provider = new Provider(
                 providerRequest.getName(),
-                providerRequest.getUserName(),
+                providerRequest.getUsername(),
                 providerRequest.getAge(),
                 providerRequest.getPhoto(),
                 providerRequest.getDescription(),
@@ -108,5 +108,17 @@ public class ProvidersController {
     public ResponseEntity createServicesByProviderId(){
         //TODO: Llamar al servicio services
         return null;
+    }
+
+    @DeleteMapping("/providers/{userName}")
+    public ResponseEntity deleteProvider(@PathVariable("userName") String userName){
+        Optional<Provider> optionalProvider = providersRepostitory.findProviderByUsername(userName);
+        if(optionalProvider.isPresent()){
+            Provider provider = optionalProvider.get();
+            providersRepostitory.delete(provider);
+            return ResponseEntity.status(HttpStatus.FOUND).body("Se elimino el proveedor");
+        }else{
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe el proveedor con el id "+userName);
+        }
     }
 }

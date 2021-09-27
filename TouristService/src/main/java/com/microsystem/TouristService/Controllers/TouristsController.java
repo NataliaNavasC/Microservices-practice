@@ -70,9 +70,9 @@ public class TouristsController {
 
     @RequestMapping (
             method = RequestMethod.DELETE,
-            value = "/{id}"
+            value = "/{username}"
     )
-    public void deleteTourist(@PathVariable int id){
-        repository.deleteById(id);
+    public void deleteTourist(@PathVariable String username){
+        repository.delete( repository.findTouristByUsername(username) );
     }
 }
