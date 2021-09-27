@@ -2,7 +2,7 @@ package com.microsystem.SearchService.Controllers;
 
 import java.util.List;
 
-import com.microsystem.SearchService.Model.TourismServiceEntity;
+import com.microsystem.SearchService.Model.TourismService;
 import com.microsystem.SearchService.Repository.TourismServiceRepository;
 import com.netflix.discovery.converters.Auto;
 
@@ -12,10 +12,10 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
+import services.xsd.GetSearchReponse;
+import services.xsd.GetSearchRequest;
 import services.xsd.ObjectFactory;
-import services.xsd.SearchServiceRequest;
-import services.xsd.TourismService;
-import services.xsd.TourismServiceReponse;
+import services.xsd.TourismServiceSOAP;
 
 @Endpoint
 public class SearchServiceController {
@@ -31,13 +31,16 @@ public class SearchServiceController {
 		this.factory = new ObjectFactory();
 	}
     
-    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "SearchService")
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getSearchRequest")
     @ResponsePayload
-    public TourismServiceReponse SearchService(@RequestPayload SearchServiceRequest searchServiceRequest){
-        List<TourismServiceEntity> entities = repository.findByTitle(searchServiceRequest.getParameter());
-        TourismServiceReponse response = factory.createTourismServiceReponse();
-        for (TourismServiceEntity serviceEntity : entities) {
-            TourismService service = factory.createTourismService();
+    public GetSearchReponse getSearch(@RequestPayload GetSearchRequest request){
+        
+        
+        List<TourismService> entities = repository.findByTitleContains("service");
+        GetSearchReponse response = factory.createGetSearchReponse();
+        
+        for (TourismService serviceEntity : entities) {
+            TourismServiceSOAP service = factory.createTourismServiceSOAP();
             service.setTitle(serviceEntity.getTitle());
             service.setDescription(serviceEntity.getDescription());
             service.setPrice(serviceEntity.getPrice());
