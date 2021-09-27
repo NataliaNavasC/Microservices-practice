@@ -42,53 +42,49 @@ De forma general, utilice el siguiente comando para correr cualquier servicio:
 3. Una vez todos los servicios estén en línea, ya puede consumirlos. 
 
 ### Consumo de servicios
-El consumo de los servicios se resume en las siguientes tablas:
+A continuación se listan los servicios ofrecidos por el sistema. 
 
-#### Servicios sesión de usuario
-| Operación | HTTP Request | URL |
-|:--------|:-----------|:-----------|
-| Registrar turista | POST | http://localhost:9990/users/tourists |
-| Registrar proveedor | POST | http://localhost:9990/users/providers |
-| Iniciar sesión | POST | http://localhost:9990/login |
+#### User services
+Provee todos los servicios requeridos para el control de sesión de los usuarios, es decir:
+* Registrar turista
+* Registrar proveedor
+* Iniciar sesión
+* Cerrar sesión
+* Eliminar registro de turista
+* Eliminar registro de proveedor
 
 #### Servicios turistas
-| Operación | HTTP Request | URL |
-|:--------|:-----------|:-----------|
-| Crear turista | POST |  http://localhost:9990/tourists |
-| Obtener todos los turistas | GET |  http://localhost:9990/tourists |
-| Obtener turista | GET |  http://localhost:9990/tourists/{id} |
-| Eliminar turista | DELETE |  http://localhost:9990/tourists/{id} |
-| Actualizar turista | UPDATE |  http://localhost:9990/tourists/{id} |
+Provee todos los servicios requeridos para la gestión de los turistas:
+* Obtener todos los turistas registrados
+* Buscar turista por id
+* Actualizar información de un turista
 
 #### Servicios proveedores
-| Operación | HTTP Request | URL |
-|:--------|:-----------|:-----------|
-| Crear provedor | POST |  http://localhost:9990/providers |
-| Obtener todos los proveedores | GET |  http://localhost:9990/providers |
+Provee todos los servicios requeridos para la gestión de los proveedores:
+* Obtener todos los proveedores registrados
+* Buscar proveedor por id
+* Actualizar información de un proveedor
 
 #### Servicios de los servicios de turismo
-| Operación | HTTP Request | URL |
-|:--------|:-----------|:-----------|
-| Crear servicio | POST | http://localhost:9990/services |
-| Obtener todos los servicios | GET |  http://localhost:9990/services |
-| Obtener servicio | GET |  http://localhost:9990/services/{id} |
-| Eliminar turista | DELETE |  http://localhost:9990/services/{id} |
-| Actualizar turista | UPDATE |  http://localhost:9990/services/{id} |
+Provee todos los servicios requeridos para la gestión de los servicios de turismo. Se tienen cuatro tipos de servicios: Accomodation, EcoTrip, Transport y Food. Cada uno de los servicios anteriormente mencionados ofrece los siguientes servicios:
+* Crear un servicio
+* Obtener servicio por id
+* Obtener todos los servicios
+* Eliminar un servicio
+* Actualizar información de un servicio
 
 #### Servicios de compra
-| Operación | HTTP Request | URL |
-|:--------|:-----------|:-----------|
-| Crear carrito de compras | POST | http://localhost:9990/shopping-cart |
-| Obtener carrito de compras | GET |  http://localhost:9990/shopping-cart/{id} |
-| Añadir servicio al carrito de compras | POST | http://localhost:9990/shopping-cart/{id}/services |
-| Eliminar servicio del carrito de compras | DELETE |  http://localhost:9990/shopping-cart/{id}/services |
-| Realizar pago | POST |  http://localhost:9990/shopping-cart/{id}/payment |
+Provee todos los servicios requeridos para el manejo del carrito de compras y la realización del pago
+* Crear carrito de compra
+* Obtener carrito de compra por id
+* Añadir un servicio al carrito de compras
+* Eliminar un servicio del carrito de compras
+* Realizar pago
 
 #### Servicios de preguntas
-| Operación | HTTP Request | URL |
-|:--------|:-----------|:-----------|
-| Crear pregunta | POST | http://localhost:9990/questions |
-| Obtener preguntas de un servicio  | GET |  http://localhost:9990/questions?serviceID={id} |
+Provee todos los servicios requeridos para la gestión de las preguntas de un servicio de turismo:
+* Crear una pregunta para un servicio de turismo específico
+* Obtener todas las preguntas de un servicio de turismo dado su id
 
 #### Servicios de búsqueda
 Este es un servicio SOAP, para poder consumirlo, remitirse al apartado de cliente.
