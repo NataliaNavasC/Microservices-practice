@@ -4,5 +4,7 @@ import com.microsystem.ShoppingService.Model.ShoppingCart;
 
 import org.springframework.data.repository.CrudRepository;
 
-public interface IShoopingRepository extends CrudRepository<ShoppingCart, Integer> {
+public interface IShoppingRepository extends CrudRepository<ShoppingCart, Integer> {
+
+    public ShoppingCart findShoppingCartByUserName(String userName);
 }

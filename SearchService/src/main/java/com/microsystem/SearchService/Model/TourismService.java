@@ -7,8 +7,7 @@ import javax.persistence.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@Table(name = "Tourism_Service")
-public abstract class TourismServiceEntity {
+public class TourismService {
     @Id
     @GeneratedValue
     private int id;
@@ -21,11 +20,11 @@ public abstract class TourismServiceEntity {
     private int providerId;
 
     
-    public TourismServiceEntity() {
+    public TourismService() {
     }
     
     
-    public TourismServiceEntity(int id, String title, double price, String description, List<String> items,
+    public TourismService(int id, String title, double price, String description, List<String> items,
             String serviceType, int providerId) {
         this.id = id;
         this.title = title;

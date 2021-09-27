@@ -12,7 +12,7 @@ public class Provider {
     private int id_Provider;
     private String name;
     @Column(unique = true)
-    private String userName;
+    private String username;
     private int age;
     private String photo;
     private String description;
@@ -25,11 +25,11 @@ public class Provider {
 
     }
 
-    public Provider(String name, String userName, int age, String photo,
+    public Provider(String name, String username, int age, String photo,
                     String description,
                     String phoneNumber, String webPage, String socialNetwork) {
         this.name = name;
-        this.userName = userName;
+        this.username = username;
         this.age = age;
         this.photo = photo;
         this.description =description;
@@ -103,12 +103,12 @@ public class Provider {
         this.name = name;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public int getAge() {

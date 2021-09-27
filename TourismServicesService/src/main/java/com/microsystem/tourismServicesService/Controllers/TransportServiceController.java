@@ -59,11 +59,12 @@ public class TransportServiceController {
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
     )
-    public TransportService updateService(@RequestParam int id,@RequestBody TransportService updatedService){
+    public TransportService updateService(@PathVariable int id,@RequestBody TransportService updatedService){
         TransportService serviceToUpdate = this.transportServiceRepository.findById(id).get();
         serviceToUpdate.setTitle(updatedService.getTitle());
         serviceToUpdate.setDescription(updatedService.getDescription());
         serviceToUpdate.setPrice(updatedService.getPrice());
+        serviceToUpdate.setItems(updatedService.getItems());
         return this.transportServiceRepository.save(serviceToUpdate);
     }
 

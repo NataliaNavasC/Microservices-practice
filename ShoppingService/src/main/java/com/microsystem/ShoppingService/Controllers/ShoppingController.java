@@ -1,9 +1,10 @@
 package com.microsystem.ShoppingService.Controllers;
 
+import com.microsystem.Request.PaymentRequest;
+import com.microsystem.Request.ShoppingCartRequest;
 import com.microsystem.ShoppingService.Model.Purchase;
 import com.microsystem.ShoppingService.Model.ShoppingCart;
-import com.microsystem.ShoppingService.Repository.IShoopingRepository;
-
+import com.microsystem.ShoppingService.Repository.IShoppingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.MediaType;
@@ -21,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ShoppingController {
 
     @Autowired
-    private IShoopingRepository shoopingRepository; 
+    private IShoppingRepository shoppingRepository; 
 
     @Autowired
     private PurchaseController purchaseController;
@@ -44,16 +45,16 @@ public class ShoppingController {
         produces = "application/json"
     )
     public ShoppingCart createShoppingCart(@RequestBody ShoppingCart newShoppingCart){
-        return this.shoopingRepository.save(newShoppingCart);
+        return this.shoppingRepository.save(newShoppingCart);
     }
 
     @RequestMapping(
-        value = "/{id}",
+        value = "/{username}",
         method = RequestMethod.GET,
         produces = "application/json"
     )
-    public ShoppingCart getShoppingCartById(@PathVariable int id){
-        return this.shoopingRepository.findById(id).get();
+    public ShoppingCart getShoppingCartByUsername(@PathVariable String username){
+        return this.shoppingRepository.findShoppingCartByUserName(username);
     }
 
     @RequestMapping(
@@ -62,10 +63,10 @@ public class ShoppingController {
         consumes = "application/json",
         produces = "application/json"
     )
-    public ShoppingCart addToShoppingCart(@PathVariable int id, @RequestBody int idServiceToAdd){
-        ShoppingCart shoppingCartToUpdate = this.shoopingRepository.findById(id).get();
-        shoppingCartToUpdate.getServicesIds().add(idServiceToAdd);
-        return this.shoopingRepository.save(shoppingCartToUpdate);
+    public ShoppingCart addToShoppingCart(@PathVariable int id, @RequestBody ShoppingCartRequest idServiceToAdd){
+        ShoppingCart shoppingCartToUpdate = this.shoppingRepository.findById(id).get();
+        shoppingCartToUpdate.getServicesIds().add(idServiceToAdd.getShoppingCartId());
+        return this.shoppingRepository.save(shoppingCartToUpdate);
     }
 
     @RequestMapping(
@@ -73,10 +74,10 @@ public class ShoppingController {
         method=RequestMethod.DELETE,
         consumes = "application/json"
     )
-    public void deleteFromShoppingCart(@PathVariable int id,@RequestBody int serviceIdToEliminate) {
-        ShoppingCart shoppingCartToUpdate = this.shoopingRepository.findById(id).get();
-        shoppingCartToUpdate.getServicesIds().remove(serviceIdToEliminate);
-        this.shoopingRepository.save(shoppingCartToUpdate);
+    public void deleteFromShoppingCart(@PathVariable int id,@RequestBody ShoppingCartRequest serviceIdToEliminate) {
+        ShoppingCart shoppingCartToUpdate = this.shoppingRepository.findById(id).get();
+        shoppingCartToUpdate.getServicesIds().remove((Object)serviceIdToEliminate.getShoppingCartId());
+        this.shoppingRepository.save(shoppingCartToUpdate);
     }
 
     @RequestMapping(
@@ -85,9 +86,13 @@ public class ShoppingController {
         consumes = "application/json",
         produces = "application/json"
     )
-    public Purchase makePayment(@PathVariable int id, @RequestBody String paymentMethod){
-        ShoppingCart shoppingCart = this.shoopingRepository.findById(id).get();
-        return purchaseController.createPurchase(shoppingCart, paymentMethod);
+    public Purchase makePayment(@PathVariable int id, @RequestBody PaymentRequest paymentMethod){
+        ShoppingCart shoppingCart = this.shoppingRepository.findById(id).get();
+        //this.shoppingRepository.delete(shoppingCart);
+        Purchase purchase =  purchaseController.createPurchase(shoppingCart, paymentMethod.getPaymentMethod());
+        shoppingCart.getServicesIds().clear();
+        this.shoppingRepository.save(shoppingCart);
+        return purchase;
     }
 
     

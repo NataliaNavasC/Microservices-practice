@@ -1,29 +1,27 @@
 package com.microsystem.ShoppingService.Model;
 
+import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
-@Entity
 public class Service {
-    @Id
-    @GeneratedValue
     private int id;
     private String title;
     private double price;
     private String description;
-    //private List<String> items;
+    private List<String> items;
+    private String serviceType;
+    private int providerId;
 
-    public Service(int id, String title, double price, String description) {
+    public Service() {}
+    
+    public Service(int id, String title, double price, String description, List<String> items, String serviceType,
+            int providerId) {
         this.id = id;
         this.title = title;
         this.price = price;
         this.description = description;
-        //this.items = items;
-    }
-
-    public Service() {
+        this.items = items;
+        this.serviceType = serviceType;
+        this.providerId = providerId;
     }
 
     public int getId() {
@@ -38,8 +36,8 @@ public class Service {
         return title;
     }
 
-    public void setTitle(String tittle) {
-        this.title = tittle;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public double getPrice() {
@@ -57,4 +55,30 @@ public class Service {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public List<String> getItems() {
+        return items;
+    }
+
+    public void setItems(List<String> items) {
+        this.items = items;
+    }
+
+    public String getServiceType() {
+        return serviceType;
+    }
+
+    public void setServiceType(String serviceType) {
+        this.serviceType = serviceType;
+    }
+
+    public int getProviderId() {
+        return providerId;
+    }
+
+    public void setProviderId(int providerId) {
+        this.providerId = providerId;
+    }
+
+    
 }

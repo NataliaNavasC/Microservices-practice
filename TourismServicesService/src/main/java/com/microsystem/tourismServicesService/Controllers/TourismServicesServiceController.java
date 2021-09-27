@@ -58,11 +58,12 @@ public class TourismServicesServiceController {
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
     )
-    public TourismService updateService(@RequestParam int id,@RequestBody TourismService updatedService){
+    public TourismService updateService(@PathVariable int id,@RequestBody TourismService updatedService){
         TourismService serviceToUpdate = this.tourismServiceRepository.findById(id).get();
         serviceToUpdate.setTitle(updatedService.getTitle());
         serviceToUpdate.setDescription(updatedService.getDescription());
         serviceToUpdate.setPrice(updatedService.getPrice());
+        serviceToUpdate.setItems(updatedService.getItems());
         return this.tourismServiceRepository.save(serviceToUpdate);
     }
 

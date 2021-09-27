@@ -58,6 +58,13 @@ spring:
                   filters:
                     - AuthFilter
 
+                - id: questions-id
+                  uri: lb://questions-service
+                  predicates:
+                      - Path=/questions/**
+                  filters:
+                    - AuthFilter
+
 eureka:
   client:
     serviceUrl:
