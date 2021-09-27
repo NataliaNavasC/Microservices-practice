@@ -7,17 +7,35 @@ public class RegisterTouristForm{
     private int age;
     private String photo;
     private String password;
+    private String description;
 
     public RegisterTouristForm() {
     }
 
-    public RegisterTouristForm(String username, String name, int age, String photo, String password) {
+
+    public String getDescription() {
+        return description;
+    }
+
+
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+
+
+    public RegisterTouristForm(String username, String name, int age, String photo, String password,
+            String description) {
         this.username = username;
         this.name = name;
         this.age = age;
         this.photo = photo;
         this.password = password;
+        this.description = description;
     }
+
+
 
     public String getUsername() {
         return username;

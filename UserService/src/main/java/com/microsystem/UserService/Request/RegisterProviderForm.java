@@ -10,12 +10,15 @@ public class RegisterProviderForm {
     private String webPage;
     private String socialNetwork;
     private String password;
+    private String description;
 
     public RegisterProviderForm() {
     }
 
+    
+
     public RegisterProviderForm(String username, String name, int age, String photo, String phoneNumber, String webPage,
-            String socialNetwork, String password) {
+            String socialNetwork, String password, String description) {
         this.username = username;
         this.name = name;
         this.age = age;
@@ -24,7 +27,22 @@ public class RegisterProviderForm {
         this.webPage = webPage;
         this.socialNetwork = socialNetwork;
         this.password = password;
+        this.description = description;
     }
+
+
+
+    public String getDescription() {
+        return description;
+    }
+
+
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+
 
     public String getUsername() {
         return username;

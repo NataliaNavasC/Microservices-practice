@@ -12,17 +12,31 @@ public class Tourist {
     private String name;
     private int age;
     private String photo;
+    private String description;
 
     public Tourist() {
     }
+    
 
-    public Tourist(int ID, String username, String name, int age, String photo) {
-        this.ID = ID;
+    public Tourist(int iD, String username, String name, int age, String photo, String description) {
+        ID = iD;
         this.username = username;
         this.name = name;
         this.age = age;
         this.photo = photo;
+        this.description = description;
     }
+
+
+    public String getDescription() {
+        return description;
+    }
+
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
 
     public int getID() {
         return ID;
