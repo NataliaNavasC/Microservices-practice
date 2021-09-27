@@ -64,6 +64,7 @@ public class TouristsController {
         tourist.setName(newTourist.getName());
         tourist.setAge(newTourist.getAge());
         tourist.setPhoto(newTourist.getPhoto());
+        tourist.setDescription(newTourist.getDescription());
         return repository.save(tourist);
     }
 

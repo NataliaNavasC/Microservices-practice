@@ -65,7 +65,7 @@ public class UserController {
         String password = authController.encodePassword(user.getPassword());
         user.setPassword(password);
         userRepository.save(user);
-        TouristDTO touristRequest = new TouristDTO(form.getUsername(), form.getName(), form.getAge(), form.getPhoto());
+        TouristDTO touristRequest = new TouristDTO(form.getUsername(), form.getName(), form.getAge(), form.getPhoto(), form.getDescription());
         // Tourist server conection
         TouristDTO touristResponse = restTemplate.postForObject("http://tourists-service/tourists", touristRequest, TouristDTO.class);
         return touristResponse;
@@ -77,9 +77,9 @@ public class UserController {
         String password = authController.encodePassword(user.getPassword());
         user.setPassword(password);
         userRepository.save(user);
-        ProviderDTO providerRequest = new ProviderDTO(form.getUsername(), form.getName(), form.getAge(), form.getPhoto(), form.getPhoneNumber(), form.getWebPage(), form.getSocialNetwork());
+        ProviderDTO providerRequest = new ProviderDTO(form.getUsername(), form.getName(), form.getAge(), form.getPhoto(), form.getPhoneNumber(), form.getWebPage(), form.getSocialNetwork(), form.getDescription());
         // Tourist server conection
-        ProviderDTO providerResponse = restTemplate.postForObject("http://providers-service/tourists", providerRequest, ProviderDTO.class);
+        ProviderDTO providerResponse = restTemplate.postForObject("http://providers-service/providers", providerRequest, ProviderDTO.class);
         return providerResponse;
     }
 

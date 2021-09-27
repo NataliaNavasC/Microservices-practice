@@ -8,12 +8,14 @@ public class ProviderDTO {
     private String phoneNumber;
     private String webPage;
     private String socialNetwork;
+    private String description;
 
     public ProviderDTO() {
     }
 
+
     public ProviderDTO(String username, String name, int age, String photo, String phoneNumber, String webPage,
-            String socialNetwork) {
+            String socialNetwork, String description) {
         this.username = username;
         this.name = name;
         this.age = age;
@@ -21,7 +23,10 @@ public class ProviderDTO {
         this.phoneNumber = phoneNumber;
         this.webPage = webPage;
         this.socialNetwork = socialNetwork;
+        this.description = description;
     }
+
+
 
     public String getUsername() {
         return username;
@@ -78,4 +83,16 @@ public class ProviderDTO {
     public void setSocialNetwork(String socialNetwork) {
         this.socialNetwork = socialNetwork;
     }
+
+
+    public String getDescription() {
+        return description;
+    }
+
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    
 }

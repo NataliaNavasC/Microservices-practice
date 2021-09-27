@@ -1,4 +1,4 @@
-package com.microsystem.tourismServicesService.Model;
+package com.microsystem.SearchService.Model;
 
 
 import java.util.List;
@@ -7,7 +7,8 @@ import javax.persistence.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class TourismService {
+@Table(name = "Tourism_Service")
+public abstract class TourismServiceEntity {
     @Id
     @GeneratedValue
     private int id;
@@ -20,11 +21,11 @@ public abstract class TourismService {
     private int providerId;
 
     
-    public TourismService() {
+    public TourismServiceEntity() {
     }
     
     
-    public TourismService(int id, String title, double price, String description, List<String> items,
+    public TourismServiceEntity(int id, String title, double price, String description, List<String> items,
             String serviceType, int providerId) {
         this.id = id;
         this.title = title;

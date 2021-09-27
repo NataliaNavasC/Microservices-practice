@@ -6,16 +6,34 @@ public class TouristDTO {
     private String name;
     private int age;
     private String photo;
+    private String description;
 
     public TouristDTO() {
     }
 
-    public TouristDTO(String username, String name, int age, String photo) {
+    
+
+    public TouristDTO(String username, String name, int age, String photo, String description) {
         this.username = username;
         this.name = name;
         this.age = age;
         this.photo = photo;
+        this.description = description;
     }
+
+
+
+    public String getDescription() {
+        return description;
+    }
+
+
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+
 
     public String getUsername() {
         return username;
