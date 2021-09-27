@@ -50,7 +50,7 @@ De forma general, utilice el siguiente comando para correr cualquier servicio:
 ### Consumo de servicios
 A continuación se listan los servicios ofrecidos por el sistema. 
 
-#### User services
+#### Servicios usuarios
 Provee todos los servicios requeridos para el control de sesión de los usuarios, es decir:
 * Registrar turista
 * Registrar proveedor
