@@ -95,6 +95,6 @@ Como cliente, se presenta una colección de postman donde se exponen todos los p
 Pasos para utilizar el cliente:
 1. Ubique la colección postman en la ruta **"/MicroTravels/MicroTravels REST API.postman_collection.json"**
 2. Descargue la colección
-3. Importe la colección en postman
+3. Importe la colección en Postman
 4. Ejecute las peticiones requeridas
 5. En caso de ser necesario, cambie el body de las peticiones o los parámetros de las Uris
