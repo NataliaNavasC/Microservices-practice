@@ -59,11 +59,13 @@ public class EcoTripServiceController {
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
     )
-    public EcoTripService updateService(@RequestParam int id,@RequestBody EcoTripService updatedService){
+    public EcoTripService updateService(@PathVariable int id,@RequestBody EcoTripService updatedService){
         EcoTripService serviceToUpdate = this.ecoTripServiceRepository.findById(id).get();
         serviceToUpdate.setTitle(updatedService.getTitle());
         serviceToUpdate.setDescription(updatedService.getDescription());
         serviceToUpdate.setPrice(updatedService.getPrice());
+        serviceToUpdate.setHasGuide(updatedService.isHasGuide());
+        serviceToUpdate.setItems(updatedService.getItems());
         return this.ecoTripServiceRepository.save(serviceToUpdate);
     }
 

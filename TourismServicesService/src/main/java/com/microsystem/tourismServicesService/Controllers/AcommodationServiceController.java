@@ -59,11 +59,12 @@ public class AcommodationServiceController {
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
     )
-    public AccomodationService updateService(@RequestParam int id,@RequestBody AccomodationService updatedService){
+    public AccomodationService updateService(@PathVariable int id,@RequestBody AccomodationService updatedService){
         AccomodationService serviceToUpdate = this.accomodationServiceRepository.findById(id).get();
         serviceToUpdate.setTitle(updatedService.getTitle());
         serviceToUpdate.setDescription(updatedService.getDescription());
         serviceToUpdate.setPrice(updatedService.getPrice());
+        serviceToUpdate.setItems(updatedService.getItems());
         return this.accomodationServiceRepository.save(serviceToUpdate);
     }
 

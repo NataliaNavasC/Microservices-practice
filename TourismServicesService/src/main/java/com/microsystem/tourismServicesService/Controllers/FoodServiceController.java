@@ -59,11 +59,12 @@ public class FoodServiceController {
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
     )
-    public FoodService updateService(@RequestParam int id,@RequestBody FoodService updatedService){
+    public FoodService updateService(@PathVariable int id,@RequestBody FoodService updatedService){
         FoodService serviceToUpdate = this.foodServiceRepository.findById(id).get();
         serviceToUpdate.setTitle(updatedService.getTitle());
         serviceToUpdate.setDescription(updatedService.getDescription());
         serviceToUpdate.setPrice(updatedService.getPrice());
+        serviceToUpdate.setItems(updatedService.getItems());
         return this.foodServiceRepository.save(serviceToUpdate);
     }
 
