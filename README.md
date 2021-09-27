@@ -47,13 +47,14 @@ El consumo de los servicios se resume en las siguientes tablas:
 #### Servicios sesión de usuario
 | Operación | HTTP Request | URL |
 |:--------|:-----------|:-----------|
-| Crear turista | POST | http://localhost:9990/users/tourists |
-| Crear proveedor | POST | http://localhost:9990/users/providers |
+| Registrar turista | POST | http://localhost:9990/users/tourists |
+| Registrar proveedor | POST | http://localhost:9990/users/providers |
 | Iniciar sesión | POST | http://localhost:9990/login |
 
 #### Servicios turistas
 | Operación | HTTP Request | URL |
 |:--------|:-----------|:-----------|
+| Crear turista | POST |  http://localhost:9990/tourists |
 | Obtener todos los turistas | GET |  http://localhost:9990/tourists |
 | Obtener turista | GET |  http://localhost:9990/tourists/{id} |
 | Eliminar turista | DELETE |  http://localhost:9990/tourists/{id} |
@@ -62,6 +63,7 @@ El consumo de los servicios se resume en las siguientes tablas:
 #### Servicios proveedores
 | Operación | HTTP Request | URL |
 |:--------|:-----------|:-----------|
+| Crear provedor | POST |  http://localhost:9990/providers |
 | Obtener todos los proveedores | GET |  http://localhost:9990/providers |
 
 #### Servicios de los servicios de turismo
