@@ -1,2 +1,2 @@
 # Diseño
-En el presente directorio se muestran los diagramas de diseño del sistema Microsystem
+En el presente directorio se encuentran los diagramas de diseño del sistema MicroTravels
