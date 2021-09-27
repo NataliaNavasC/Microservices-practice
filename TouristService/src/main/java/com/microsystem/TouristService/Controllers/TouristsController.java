@@ -3,6 +3,8 @@ package com.microsystem.TouristService.Controllers;
 import com.microsystem.TouristService.Model.Tourist;
 import com.microsystem.TouristService.Repository.ITouristRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -17,6 +19,18 @@ public class TouristsController {
 
     @Autowired
     private ITouristRepository repository;
+
+    @Autowired
+    Environment environment;
+
+    @RequestMapping(
+            value = "/status",
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public String getStatus(){
+        String port = environment.getProperty("local.server.port");
+        return "Server is up on port " + port;
+    }
 
     @RequestMapping(
             method = RequestMethod.POST,
@@ -50,6 +64,7 @@ public class TouristsController {
         tourist.setName(newTourist.getName());
         tourist.setAge(newTourist.getAge());
         tourist.setPhoto(newTourist.getPhoto());
+        tourist.setDescription(newTourist.getDescription());
         return repository.save(tourist);
     }
 
