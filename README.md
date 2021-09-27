@@ -24,6 +24,17 @@ El servidor consta de 9 servicios los cuales se ejecutan por defecto en los sigu
 |    questions-service    |          3330          |
 |     search-service      |          2220          |
 
+Los servicios del sistema (a excepción de eureka y gateway) pueden ser ejecutados en múltiples instancias, para ello, debe cambiar el puerto en que se ejecutan por defecto. Para cambiar los puertos utilice los siguientes comandos:
+
+* IOS: 
+> SERVER_PORT=#### mvn spring-boot:run
+
+* Windows:
+> SET SERVER_PORT=####
+> 
+> mvn spring-boot:run
+
+### Pasos para ejecutar el servidor
 De forma general, utilice el siguiente comando para correr cualquier servicio: 
 > mvn clean install spring-boot:run
 1. Ejecutar el eureka server
