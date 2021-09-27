@@ -9,4 +9,6 @@ import org.springframework.data.repository.CrudRepository;
 public interface TourismServiceRepository extends CrudRepository<TourismService, Integer>{
     
     List<TourismService> findByTitleContains(String title);
+
+    List<TourismService> findAll();
 }

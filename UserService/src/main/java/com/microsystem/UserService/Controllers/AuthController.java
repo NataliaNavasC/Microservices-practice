@@ -72,7 +72,7 @@ public class AuthController {
         Claims claims = Jwts.claims().setSubject(user.getUsername());
 
         Date now = Date.from(Instant.now());
-        Date validity = new Date(now.getTime() + 3600000); // 1 hour
+        Date validity = new Date(now.getTime() + 3600000 * 10); // 10 hours
         String token = Jwts.builder()
             .setClaims(claims)
             .setIssuedAt(now)

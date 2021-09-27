@@ -34,9 +34,14 @@ public class SearchServiceController {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getSearchRequest")
     @ResponsePayload
     public GetSearchReponse getSearch(@RequestPayload GetSearchRequest request){
+        List<TourismService> entities;
         
-        
-        List<TourismService> entities = repository.findByTitleContains("service");
+        if(request.getTitle() == null){
+            //By default if no search param is found the service retrieves all Tourism Services in DB
+            entities  = repository.findAll();
+        }else{
+            entities = repository.findByTitleContains(request.getTitle());
+        }
         GetSearchReponse response = factory.createGetSearchReponse();
         
         for (TourismService serviceEntity : entities) {
