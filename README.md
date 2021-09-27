@@ -5,6 +5,7 @@
 Al poseer un repositorio privado carecemos del apartado "Wiki", por ende, hemos optado por agregar el video de la demostración en esta sección del readme. Puede acceder al video dando click en la siguiente imagen:
 [![Video de demostración](https://img.youtube.com/vi/JmpnQGyoZVE/0.jpg)](https://www.youtube.com/watch?v=JmpnQGyoZVE)
 
+Adicionalmente en la carpeta de Diseño podrá encontrar los diagramas de diseño respectivos para esta entrega.
 
 # MicroTravels
 A continuación se detallan la instrucciones de instalación y ejecución del servidor MicroTravels. Así mismo, se describe la forma en que se pueden consumir los servicios a través de un cliente postman.
