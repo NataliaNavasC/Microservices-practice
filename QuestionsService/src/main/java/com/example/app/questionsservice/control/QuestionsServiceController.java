@@ -39,7 +39,7 @@ public class QuestionsServiceController {
         //TODO: Consumir un servicio de ServicesService que verifique que el servicio existe en la BD
 
         //Si el servicio si existe se agrega la nueva pregunta con ese serviceId
-        return repo.save(new Question(question.getServiceId(), question.getDescription(), question.getResponse()));
+        return repo.save(new Question(question.getServiceId(), question.getUsername(), question.getDescription(), question.getResponse()));
 
         //TODO: Retornar un 404 NOT FOUND si el servicio no existe
     }
