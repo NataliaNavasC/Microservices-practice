@@ -1,12 +1,13 @@
-# MicroTravels
-
-A continuación se detallan la instrucciones de instalación y ejecución del servidor MicroTravels. Así mismo, se describe la forma en que se pueden consumir los servicios a través de un cliente postman.
+# Wiki
 
 **Nota del equipo de desarrollo:**
 
 Al poseer un repositorio privado carecemos del apartado "Wiki", por ende, hemos optado por agregar el video de la demostración en esta sección del readme. Puede acceder al video dando click en la siguiente imagen:
 [![Video de demostración](https://img.youtube.com/vi/Uj_cqTUZ5Yc/0.jpg)](https://www.youtube.com/watch?v=Uj_cqTUZ5Yc)
 
+
+# MicroTravels
+A continuación se detallan la instrucciones de instalación y ejecución del servidor MicroTravels. Así mismo, se describe la forma en que se pueden consumir los servicios a través de un cliente postman.
 
 ## Servidor
 ### ¿Cómo instalar el servidor?
