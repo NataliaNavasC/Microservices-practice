@@ -3,7 +3,7 @@
 **Nota del equipo de desarrollo:**
 
 Al poseer un repositorio privado carecemos del apartado "Wiki", por ende, hemos optado por agregar el video de la demostración en esta sección del readme. Puede acceder al video dando click en la siguiente imagen:
-[![Video de demostración](https://img.youtube.com/vi/Uj_cqTUZ5Yc/0.jpg)](https://www.youtube.com/watch?v=Uj_cqTUZ5Yc)
+[![Video de demostración](https://img.youtube.com/vi/JmpnQGyoZVE/0.jpg)](https://www.youtube.com/watch?v=JmpnQGyoZVE)
 
 
 # MicroTravels
