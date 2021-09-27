@@ -99,8 +99,9 @@ Este es un servicio SOAP, para poder consumirlo, remitirse al apartado de client
 Como cliente, se presenta una colección de postman donde se exponen todos los puntos de acceso mostrados anteriormente. 
 
 Pasos para utilizar el cliente:
-1. Ubique la colección postman en la ruta **"/MicroTravels/MicroTravels REST API.postman_collection.json"**
-2. Descargue la colección
-3. Importe la colección en Postman
-4. Ejecute las peticiones requeridas
-5. En caso de ser necesario, cambie el body de las peticiones o los parámetros de las Uris
+1. Ubique y descargue la colección Postman en la ruta **"/MicroTravels/Cliente/MicroTravels REST API.postman_collection.json"**
+2. Ubique y descargue las variables de entorno de Postman en la ruta **"/MicroTravels/Cliente/MicroSystem.postman_globals.json"** 
+4. Importe la colección en Postman
+5. Importe las variables de entorno en Postman
+6. Ejecute las peticiones requeridas
+7. En caso de ser necesario, cambie el body de las peticiones o los parámetros de las Uris
