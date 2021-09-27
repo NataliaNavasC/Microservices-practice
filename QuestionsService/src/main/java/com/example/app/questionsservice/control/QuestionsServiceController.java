@@ -4,6 +4,7 @@ import com.example.app.questionsservice.model.Question;
 import com.example.app.questionsservice.repository.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -17,30 +18,26 @@ public class QuestionsServiceController {
     @Autowired
     private QuestionRepository repo;
 
+    @RequestMapping(
+            value = "/questions/status",
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public String getStatus(){
+        String port = env.getProperty("local.server.port");
+        return "Server is up on port " + port;
+    }
     @GetMapping("/questions")
     public List<Question> getQuestions(@RequestParam(name = "serviceID") int serviceId) {
         List<Question> questions = new ArrayList<>();
-
-        //TODO: Consumir un servicio de ServicesService que verifique que el servicio existe en la BD
-
         repo.findAll().forEach(q -> {
             if(q.getServiceId() == serviceId)
                 questions.add(q);
         });
-
-        //TODO: Retornar un 404 NOT FOUND si el servicio no existe
-
         return questions;
     }
 
     @PostMapping("/questions")
     public Question postQuestion(@RequestBody Question question) {
-
-        //TODO: Consumir un servicio de ServicesService que verifique que el servicio existe en la BD
-
-        //Si el servicio si existe se agrega la nueva pregunta con ese serviceId
         return repo.save(new Question(question.getServiceId(), question.getUsername(), question.getDescription(), question.getResponse()));
-
-        //TODO: Retornar un 404 NOT FOUND si el servicio no existe
     }
 }
