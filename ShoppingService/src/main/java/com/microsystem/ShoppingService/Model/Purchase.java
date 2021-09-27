@@ -13,7 +13,6 @@ public class Purchase {
     @Id
     @GeneratedValue
     private int id;
-    @Column(unique = true)
     private String userName;
     private String status;
     private String paymentMethod;

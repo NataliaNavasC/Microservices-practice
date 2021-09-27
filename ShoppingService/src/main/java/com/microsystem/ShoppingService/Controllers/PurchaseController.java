@@ -30,8 +30,12 @@ public class PurchaseController {
     }
 
     public Purchase createPurchase(ShoppingCart shoppingCart, String paymentMethod){
-        double totalPurchase = calculateTotalPurchase(shoppingCart.getServicesIds());
-        Purchase newPurchase = new Purchase(0, shoppingCart.getUserName(), "In progress", paymentMethod, totalPurchase, shoppingCart.getServicesIds());
+        List<Integer> services = new ArrayList<>();
+        for(int s: shoppingCart.getServicesIds()){
+            services.add(s);
+        }
+        double totalPurchase = calculateTotalPurchase(services);
+        Purchase newPurchase = new Purchase(0, shoppingCart.getUserName(), "In progress", paymentMethod, totalPurchase, services);
         return this.purchaseRepository.save(newPurchase);
     }
 
@@ -47,7 +51,7 @@ public class PurchaseController {
     private List<Service> getServicesById(List<Integer> servicesIds){
         List<Service> servicesOnShoppingCart = new ArrayList<Service>();
         for (int id : servicesIds) {
-            Service response = restTemplate.getForObject("http://services/{id}", Service.class, id);
+            Service response = restTemplate.getForObject("http://tourismservices-service/services/{id}", Service.class, id);
             servicesOnShoppingCart.add(response);
         }
         return servicesOnShoppingCart;
