@@ -1,0 +1,29 @@
+{
+	"id": "360ddc89-1d24-488c-8341-93b0f276db73",
+	"values": [
+		{
+			"key": "URL",
+			"value": "http://localhost",
+			"enabled": true
+		},
+		{
+			"key": "GatewayURL",
+			"value": "{{URL}}:9990",
+			"enabled": true
+		},
+		{
+			"key": "UserToken",
+			"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJEYW5pZWwiLCJpYXQiOjE2MzI3MTkxNTcsImV4cCI6MTYzMjcyMjc1N30.xZE62ngdPjEAM4RQHk78Dw_Iv14DwyfvI1Rbl0-h1eo",
+			"enabled": true
+		},
+		{
+			"key": "tourismServicesPortSoap11BaseUrl",
+			"value": "http://localhost:2220",
+			"enabled": true
+		}
+	],
+	"name": "MicroSystem Globals",
+	"_postman_variable_scope": "globals",
+	"_postman_exported_at": "2021-09-27T06:04:45.557Z",
+	"_postman_exported_using": "Postman/8.12.2"
+}
