@@ -34,7 +34,7 @@ Los servicios del sistema (a excepción de eureka y gateway) pueden ser ejecutad
 > 
 > mvn spring-boot:run
 
-### Pasos para ejecutar el servidor
+#### Pasos para ejecutar el servidor
 De forma general, utilice el siguiente comando para correr cualquier servicio: 
 > mvn clean install spring-boot:run
 1. Ejecutar el eureka server
