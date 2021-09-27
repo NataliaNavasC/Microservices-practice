@@ -45,7 +45,7 @@ De forma general, utilice el siguiente comando para correr cualquier servicio:
 > mvn clean install spring-boot:run
 1. Ejecutar el eureka server
 2. Ejecutar los demás servicios (al ser independientes, el orden es irrelevante)
-3. Una vez todos los servicios estén en línea, ya puede consumirlos. 
+3. Una vez todos los servicios estén en línea, ya puede consumirlos. En el apartado "Cliente" encuentra más información acerca del consumo por medio de un cliente Postman. 
 
 ### Consumo de servicios
 A continuación se listan los servicios ofrecidos por el sistema. 
