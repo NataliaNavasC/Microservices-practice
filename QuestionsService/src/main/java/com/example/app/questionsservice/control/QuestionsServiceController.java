@@ -26,7 +26,8 @@ public class QuestionsServiceController {
         String port = env.getProperty("local.server.port");
         return "Server is up on port " + port;
     }
-    @GetMapping("/questions")
+
+    @GetMapping(value = "/questions", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Question> getQuestions(@RequestParam(name = "serviceID") int serviceId) {
         List<Question> questions = new ArrayList<>();
         repo.findAll().forEach(q -> {
@@ -39,5 +40,12 @@ public class QuestionsServiceController {
     @PostMapping("/questions")
     public Question postQuestion(@RequestBody Question question) {
         return repo.save(new Question(question.getServiceId(), question.getUsername(), question.getDescription(), question.getResponse()));
+    }
+
+    @PutMapping("/questions/response")
+    public Question respondQuestion(@RequestBody Question question) {
+        Question questionToUpdate = repo.findById(question.getId()).get();
+        questionToUpdate.setResponse(question.getResponse());
+        return  repo.save(questionToUpdate);
     }
 }
