@@ -2,6 +2,9 @@ package com.microsystem.tourismServicesService.Controllers;
 
 import com.microsystem.tourismServicesService.Model.TourismService;
 import com.microsystem.tourismServicesService.Repository.ITourismServiceRepository;
+import com.microsystem.tourismServicesService.Service.SearchSoapClient;
+import com.microsystem.tourismServicesService.wsdl.TourismServiceSOAP;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.MediaType;
@@ -11,12 +14,15 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "services")
-public class TourismServicesServiceController {
+public class TourismServicesServiceController{
     @Autowired
     private Environment environment;
 
     @Autowired
     private ITourismServiceRepository tourismServiceRepository;
+
+    @Autowired
+    private SearchSoapClient searchSoapClient;
     
 
     @RequestMapping(
@@ -66,6 +72,15 @@ public class TourismServicesServiceController {
         serviceToUpdate.setItems(updatedService.getItems());
         return this.tourismServiceRepository.save(serviceToUpdate);
     }
+
+    @RequestMapping(
+            value = "{search}",
+            method = RequestMethod.PUT,
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
+    )
+    public List<TourismServiceSOAP> searchServices(@RequestParam String title){
+        return searchSoapClient.searchServices(title);
+    } 
 
     @DeleteMapping("{id}")
     public void deleteService(@PathVariable int id){
