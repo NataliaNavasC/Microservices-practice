@@ -103,9 +103,9 @@ public class ProvidersController {
     }
 
     @GetMapping("/providers/{idProvider}/services")
-    public ResponseEntity getServicesByProviderId(){
-        //TODO: Llamar al servicio services
-        return null;
+    public ResponseEntity getServicesByProviderId(@PathVariable int idProvider){
+        List<TourismService> response = restTemplate.getForObject("http://tourismservices-service/provider/"+idProvider,List.class);
+        return ResponseEntity.status(HttpStatus.FOUND).body(response);
     }
 
     @PostMapping("/providers/{idProvider}/tourismService")
@@ -118,26 +118,26 @@ public class ProvidersController {
     @PostMapping("/providers/{idProvider}/AccomodationService")
     public ResponseEntity createAccomodationServiceByProviderId(@PathVariable("idProvider") int idProvider, @RequestBody AccomodationService request){
         request.setProviderId(idProvider);
-        AccomodationService response = restTemplate.postForObject("http://tourismservices-service//services/accomodation",request,AccomodationService.class);
+        AccomodationService response = restTemplate.postForObject("http://tourismservices-service/accomodation",request,AccomodationService.class);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(response);
     }
 
     @PostMapping("/providers/{idProvider}/ecoTripService")
     public ResponseEntity createEcoTripServiceByProviderId(@PathVariable("idProvider") int idProvider, @RequestBody EcoTripService request){
         request.setProviderId(idProvider);
-        EcoTripService response = restTemplate.postForObject("http://tourismservices-service//services/ecoTrip",request,EcoTripService.class);
+        EcoTripService response = restTemplate.postForObject("http://tourismservices-service/ecoTrip",request,EcoTripService.class);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(response);
     }
 
     public ResponseEntity createTransportServiceByProviderId(@PathVariable("idProvider") int idProvider, @RequestBody TransportService request){
         request.setProviderId(idProvider);
-        TransportService response = restTemplate.postForObject("http://tourismservices-service//services/ecoTrip",request,TransportService.class);
+        TransportService response = restTemplate.postForObject("http://tourismservices-service/transport",request,TransportService.class);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(response);
     }
     @PostMapping("/providers/{idProvider}/food")
     public ResponseEntity createFoodService(@PathVariable("idProvider") int idProvider, @RequestBody FoodService request){
         request.setProviderId(idProvider);
-        FoodService response = restTemplate.postForObject("http://tourismservices-service//services/ecoTrip",request,FoodService.class);
+        FoodService response = restTemplate.postForObject("http://tourismservices-service/provider/food",request,FoodService.class);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(response);
     }
 
