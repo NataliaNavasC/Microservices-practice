@@ -27,7 +27,22 @@ public class Provider {
 
     public Provider(String name, String username, int age, String photo,
                     String description,
-                    String phoneNumber, String webPage, String socialNetwork) {
+                    String phoneNumber, String webPage, String socialNetwork) throws Exception {
+        if(name.length()<1 | name.length()>50){
+            throw  new Exception("Name is empty or it's length is more than 50 characters");
+        }
+        if(username.length()<1 || username.length()>20){
+            throw  new Exception("UserName is empty or it's length is more than 20 characters");
+        }
+        if(photo == null){
+            throw  new Exception("There is no photo");
+        }
+        if(description.length()<1 || description.length()>50){
+            throw  new Exception("Description is empty or it's length is more than 50 characters");
+        }
+        if(phoneNumber.length()<1||phoneNumber.length()>10){
+            throw  new Exception("Phone number is empty or it's length is more than 10 characters");
+        }
         this.name = name;
         this.username = username;
         this.age = age;
