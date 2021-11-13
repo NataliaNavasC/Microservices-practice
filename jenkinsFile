@@ -2,15 +2,19 @@ pipeline {
   agent any
   stages { 
         stage('deploy eureka'){
-          dir('eurekaserver'){
-              sh 'mvn clean install'
-              sh 'cp target/eureka.war /deploy'
+          steps{
+            dir('eurekaserver'){
+                sh 'mvn clean install'
+                sh 'cp target/eureka.war /deploy'
+            }
           }
         }
         stage('deploy gateway') {
-            dir('GatewayService'){
-              sh 'mvn clean install'
-              sh 'cp target/gateway.war /deploy'
+            steps{
+              dir('GatewayService'){
+                sh 'mvn clean install'
+                sh 'cp target/gateway.war /deploy'
+              }
             }
         }
     }
