@@ -1,14 +1,6 @@
 pipeline {
   agent any
   stages { 
-        stage('deploy eureka'){
-          steps{
-            dir('eurekaserver'){
-                sh 'mvn package'
-                sh 'cp target/eureka.war /deploy'
-            }
-          }
-        }
         stage('deploy gateway') {
             steps{
               dir('GatewayService'){
