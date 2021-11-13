@@ -11,6 +11,8 @@ services:
     networks:
       - micro-travels-net
 
+  eureka:
+
   tomcat-server:
     build: ./tomcat
     image: tomcat
