@@ -36,7 +36,7 @@ public class TouristsController {
     @RequestMapping(
             method = RequestMethod.POST,
             consumes =  "application/json" )
-    public Tourist createTourist(@RequestBody Tourist newTourist){
+    public Tourist createTourist( @RequestBody Tourist newTourist ){
         if( newTourist.getName().equals("") ){
             throw new EmptyTouristNameException();
         }
@@ -84,7 +84,7 @@ public class TouristsController {
             value = "/{username}"
     )
     public void deleteTourist(@PathVariable String username){
-        Tourist tourist = repository.findTouristByUsername(username);
+        Tourist tourist = repository.findTouristByUsername( username );
         if( tourist != null){
             repository.delete( tourist );
         }        
