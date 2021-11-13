@@ -36,7 +36,7 @@ public class TouristsController {
             method = RequestMethod.POST,
             consumes =  "application/json" )
     public Tourist createTourist(@RequestBody Tourist newTourist){
-        return repository.save(newTourist);
+        return repository.save( newTourist );
     }
 
     @RequestMapping(
