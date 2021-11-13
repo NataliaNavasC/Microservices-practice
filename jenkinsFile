@@ -1,11 +1,11 @@
 pipeline {
   agent any
   stages { 
-        stage('deploy gateway') {
+        stage('deploy tourists') {
             steps{
-              dir('GatewayService'){
+              dir('TouristService'){
                 sh 'mvn package'
-                sh 'cp target/gateway.war /deploy'
+                sh 'cp target/tourists.war /deploy'
               }
             }
         }
