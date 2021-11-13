@@ -4,7 +4,7 @@ pipeline {
         stage('deploy eureka'){
           steps{
             dir('eurekaserver'){
-                sh 'mvn clean compile'
+                sh 'mvn package'
                 sh 'cp target/eureka.war /deploy'
             }
           }
@@ -12,7 +12,7 @@ pipeline {
         stage('deploy gateway') {
             steps{
               dir('GatewayService'){
-                sh 'mvn clean compile'
+                sh 'mvn package'
                 sh 'cp target/gateway.war /deploy'
               }
             }
