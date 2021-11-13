@@ -74,8 +74,8 @@ public class TourismServicesServiceController{
     }
 
     @RequestMapping(
-            value = "{search}",
-            method = RequestMethod.PUT,
+            value = "/search",
+            method = RequestMethod.GET,
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
     )
     public List<TourismServiceSOAP> searchServices(@RequestParam String title){
