@@ -8,7 +8,7 @@ pipeline {
                 sh 'cp target/eureka.war /deploy'
             }
           }
-        },
+        }
         stage('deploy tourists') {
             steps{
               dir('TouristService'){
