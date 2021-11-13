@@ -11,8 +11,6 @@ services:
     networks:
       - micro-travels-net
 
-  
-
   tomcat-server:
     build: ./tomcat
     image: tomcat
@@ -27,7 +25,6 @@ services:
     networks:
       - micro-travels-net
 
-  
 networks:
   micro-travels-net:
     driver: bridge
@@ -35,3 +32,4 @@ networks:
 volumes:
   new-jenkins-data:
   tomcat-data:
+  mariadb-data:
