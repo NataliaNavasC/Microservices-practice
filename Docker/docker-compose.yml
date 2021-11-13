@@ -16,9 +16,12 @@ services:
     image: tomcat
     container_name: tomcat
     volumes:
-      - tomcat-data:/usr/local/tomcat/webapp
+      - tomcat-data:/usr/local/tomcat/webapps
     ports:
       - 8081:8000
+    environment: 
+      # Cambiar por un password más seguro
+      - TOMCAT_PASSWORD=tomcat
     networks:
       - micro-travels-net
 
