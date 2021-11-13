@@ -1,2 +1,2 @@
 FROM tomcat:9
-VOLUME [ "/usr/local/tomcat/webapps" ]
+VOLUME [ "/usr/local/tomcat/webapp" ]
