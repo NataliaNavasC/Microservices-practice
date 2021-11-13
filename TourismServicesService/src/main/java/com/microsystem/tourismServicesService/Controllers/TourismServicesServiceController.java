@@ -74,6 +74,15 @@ public class TourismServicesServiceController{
     }
 
     @RequestMapping(
+            value = "/provider/{providerId}",
+            method = RequestMethod.GET,
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
+    )
+    public List<TourismService> getServicesByProviderId(@PathVariable int providerId){
+        return this.tourismServiceRepository.findByProviderId(providerId);
+    }
+
+    @RequestMapping(
             value = "/search",
             method = RequestMethod.GET,
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
