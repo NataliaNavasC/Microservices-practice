@@ -4,18 +4,16 @@ package com.microsystem.ExternalServices.Controllers;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.maps.*;
 import com.google.maps.errors.ApiException;
 import com.google.maps.model.DirectionsResult;
 import com.google.maps.model.TravelMode;
 import com.microsystem.ExternalServices.Model.CountryInformation;
 import com.microsystem.ExternalServices.Model.Steps;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
+import com.microsystem.ExternalServices.Model.Weather;
+import com.microsystem.ExternalServices.Utils.*;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
@@ -28,8 +26,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import java.io.IOException;
 import java.util.*;
 
 @RestController
@@ -85,4 +81,23 @@ public class ExternalController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
+
+    @GetMapping("/external/weather")
+    public ResponseEntity getWeatherInfo(@RequestParam String city,@RequestParam String checkInDate){
+        String key = "280543ca0f464683a7d202458211311";
+        String APIresponse = restTemplate.getForObject("http://api.weatherapi.com/v1/forecast.json?key={key}&q={city}&days=10&aqi=no&alerts=no", String.class, key, city);
+        try {
+            Weather weather = Utils.convertJsontoWeather(APIresponse,checkInDate);
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body(weather);
+        } 
+        catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+    }
+
+
+    // ----------------------------------------------------------------------------
+
+    
+
 }
