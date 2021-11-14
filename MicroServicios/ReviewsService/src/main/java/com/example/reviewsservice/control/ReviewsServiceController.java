@@ -47,7 +47,7 @@ public class ReviewsServiceController {
         Review newReview = repo.findById(review.getId()).get();
         newReview.setComment(review.getComment());
         newReview.setStars(review.getStars());
-        return repo.save(review);
+        return repo.save(newReview);
     }
 
 }
