@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import Exceptions.UserNotFoundException;
+
 @RestController
 @RequestMapping(value = "/users")
 public class UserController {
@@ -57,7 +59,11 @@ public class UserController {
 
     @GetMapping(value = "/{username}")
     public User getUserByUsername(@PathVariable String username){
-        return userRepository.findByUsername(username);
+        User user = userRepository.findByUsername(username);
+        if(user==null){
+            throw new UserNotFoundException(username);
+        }
+        return user;
     }
 
     @PostMapping(value = "/tourists")
