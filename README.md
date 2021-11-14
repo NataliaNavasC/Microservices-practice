@@ -26,7 +26,7 @@ El servidor consta de 9 servicios los cuales se ejecutan por defecto en los sigu
 |      users-service      |          8880          |
 |    providers-service    |          7770          |
 |    tourists-service     |          6660          |
-| tourismservices-service |          5550          |
+| tourism-services |          5550          |
 |    purchases-service    |          4440          |
 |    questions-service    |          3330          |
 |     search-service      |          2220          |

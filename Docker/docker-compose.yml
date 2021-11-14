@@ -4,24 +4,84 @@ services:
     image: jenkins
     container_name: jenkins
     volumes:
-      - new-jenkins-data:/var/jenkins_home
-      - tomcat-data:/deploy
+      - jenkins-data:/var/jenkins_home
+      - eureka-data:/eureka-deploy
+      - users-data:/users-deploy
+      - client-services-data:/client-services-deploy
+      - tourism-services-data:/tourism-services-deploy
+      - /var/run/docker.sock:/var/run/docker.sock #this volume is neccessary to use docker inside jenkins
     ports:
       - 8080:8080
     networks:
       - micro-travels-net
 
-  tomcat-server:
-    build: ./tomcat
-    image: tomcat
-    container_name: tomcat
-    volumes:
-      - tomcat-data:/usr/local/tomcat/webapps
+
+  eureka: 
+    build: ./eureka
+    container_name: eureka
+    networks:
+      - micro-travels-net
     ports:
-      - 8081:8080
+      - 8761:8761 #eurekaserver
+      - 9990:9990 #gateway
+      - 2220:2220 #SOAP
+    volumes:
+      - eureka-data:/web-apps
+    environment:
+      - eureka.instance.preferIpAddress=true
+    
+  users-server:
+    build: ./users
+    image: tomcat
+    container_name: users
+    volumes:
+      - users-data:/usr/local/tomcat/webapps
+    ports:
+      - 8081:8080 #users(auth), tourists, providers
     environment: 
-      # Cambiar por un password más seguro
       - TOMCAT_PASSWORD=tomcat
+      - eureka.client.serviceUrl.defaultZone=http://eureka:8761/eureka/
+      - eureka.instance.preferIpAddress=true
+      - server.port=8080
+    depends_on:
+      - "eureka"
+    networks:
+      - micro-travels-net
+
+  client-services-server:
+    build: ./clientServices
+    image: tomcat
+    container_name: client-services
+    volumes:
+      - client-services-data:/usr/local/tomcat/webapps
+    ports:
+      - 8082:8080 #reviews, questions, questions
+    environment: 
+      - TOMCAT_PASSWORD=tomcat
+      - eureka.client.serviceUrl.defaultZone=http://eureka:8761/eureka/
+      - eureka.instance.preferIpAddress=true
+      - server.port=8080
+    depends_on:
+      - "eureka"
+    networks:
+      - micro-travels-net
+
+  tourism-services-server:
+    build: ./tourismServices
+    image: tomcat
+    container_name: tourism-services #external, tourismServices
+    volumes:
+      - tourism-services-data:/usr/local/tomcat/webapps
+    ports:
+      - 8083:8080
+    environment: 
+      - TOMCAT_PASSWORD=tomcat
+      - eureka.client.serviceUrl.defaultZone=http://eureka:8761/eureka/
+      - eureka.instance.preferIpAddress=true
+      - server.port=8080
+      - soap.url=http://eureka:2220/ws
+    depends_on:
+      - "eureka"
     networks:
       - micro-travels-net
 
@@ -30,6 +90,8 @@ networks:
     driver: bridge
 
 volumes:
-  new-jenkins-data:
-  tomcat-data:
-  mariadb-data:
+  jenkins-data:
+  eureka-data:
+  client-services-data:
+  tourism-services-data:
+  users-data:

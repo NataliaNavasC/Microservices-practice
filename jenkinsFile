@@ -1,92 +1,101 @@
-pipeline {
-  agent any
-  stages { 
-        stage('deploy eureka'){
+  pipeline {
+     agent any
+     stages {
+        stage('clean'){
           steps{
-            dir('eurekaserver'){
-                sh 'mvn package'
-                sh 'cp target/eureka.war /entrypoint-deploy'
+            sh 'rm -rf /users-deploy/*'
+            sh 'rm -rf /client-services-deploy/*'
+            sh 'rm -rf /tourism-services-deploy/*'
+          }
+        }
+        stage('build gateway'){
+          steps{
+            dir('MicroServicios/GatewayService'){
+                sh 'mvn package -Dmaven.test.skip'
+                sh 'cp target/gateway.jar /eureka-deploy'
             }
           }
         }
-        stage('deploy gateway'){
-          steps{
-            dir('GatewayService'){
-                sh 'mvn package'
-                sh 'cp target/gateway.war /entrypoint-deploy'
-            }
-          }
-        }
-        stage('deploy users') {
+        stage('build search') {
             steps{
-              dir('UserService'){
-                sh 'mvn package'
+              dir('MicroServicios/SearchService'){
+                sh 'mvn package -Dmaven.test.skip'
+                sh 'cp target/search.jar /eureka-deploy'
+              }
+            }
+        }
+        stage('build users') {  
+          steps{
+              dir('MicroServicios/UserService'){
+                sh 'mvn package -Dmaven.test.skip'
                 sh 'cp target/users.war /users-deploy'
               }
             }
         }
-        stage('deploy providers') {
+        stage('build providers') {
             steps{
-              dir('ProvidersService'){
-                sh 'mvn package'
+              dir('MicroServicios/ProviderService'){
+                sh 'mvn package -Dmaven.test.skip'
                 sh 'cp target/providers.war /users-deploy'
               }
             }
         }
-        stage('deploy tourists') {
+        stage('build tourists') {
             steps{
-              dir('TouristService'){
-                sh 'mvn package'
+              dir('MicroServicios/TouristService'){
+                sh 'mvn package -Dmaven.test.skip'
                 sh 'cp target/tourists.war /users-deploy'
               }
             }
         }
-        stage('deploy shopping') {
+        stage('build shopping') {
             steps{
-              dir('ShoppingService'){
-                sh 'mvn package'
+              dir('MicroServicios/ShoppingService'){
+                sh 'mvn package -Dmaven.test.skip'
                 sh 'cp target/shopping.war /client-services-deploy'
               }
             }
         }
-        stage('deploy questions') {
+        stage('build questions') {
             steps{
-              dir('QuestionsService'){
-                sh 'mvn package'
+              dir('MicroServicios/QuestionsService'){
+                sh 'mvn package -Dmaven.test.skip'
                 sh 'cp target/questions.war /client-services-deploy'
               }
             }
         }
-        stage('deploy reviews') {
+        stage('build external') {
             steps{
-              dir('ReviewsService'){
-                sh 'mvn package'
-                sh 'cp target/reviews.war /client-services-deploy'
-              }
-            }
-        }
-        stage('deploy external') {
-            steps{
-              dir('ExternalServices'){
-                sh 'mvn package'
+              dir('MicroServicios/ExternalServices'){
+                sh 'mvn package -Dmaven.test.skip'
                 sh 'cp target/external.war /tourism-services-deploy'
               }
             }
         }
-        stage('deploy search') {
+        stage('build toursim services') {
             steps{
-              dir('SearchService'){
-                sh 'mvn package'
-                sh 'cp target/search.war /tourism-services-deploy'
+              dir('MicroServicios/TourismServicesService'){
+                sh 'mvn package -Dmaven.test.skip'
+                sh 'cp target/tourism-services.war /tourism-services-deploy'
               }
             }
         }
-        stage('deploy toursim services') {
+        stage('build reviews') {
             steps{
-              dir('TourismServicesService'){
-                sh 'mvn package'
-                sh 'cp target/tourism-services.war /tourism-services-deploy'
+              dir('MicroServicios/ReviewsService'){
+                sh 'mvn package -Dmaven.test.skip'
+                sh 'cp target/reviews.war /client-services-deploy'
               }
+            }
+        }
+        stage('restart & deploy') {
+            steps{
+              sh 'docker restart eureka'
+              sh 'docker exec eureka java -jar /web-apps/gateway.jar &'
+              sh 'docker exec eureka java -jar /web-apps/search.jar &'
+              sh 'docker restart users'
+              sh 'docker restart tourism-services'
+              sh 'docker restart client-services'
             }
         }
     }
