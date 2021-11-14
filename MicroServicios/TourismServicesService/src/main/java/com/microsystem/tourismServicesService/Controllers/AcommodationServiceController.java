@@ -22,7 +22,7 @@ import java.util.List;
 import javax.websocket.server.PathParam;
 
 @RestController
-@RequestMapping(value = "/tourism-services/accomodation")
+@RequestMapping(value = "/accomodation")
 public class AcommodationServiceController {
     @Autowired
     private Environment environment;

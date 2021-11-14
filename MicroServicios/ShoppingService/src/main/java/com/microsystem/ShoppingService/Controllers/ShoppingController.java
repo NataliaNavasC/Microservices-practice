@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(
-    value = "shopping-cart"
+    value = ""
 )
 public class ShoppingController {
 

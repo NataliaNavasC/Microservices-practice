@@ -9,6 +9,7 @@ services:
       - users-data:/users-deploy
       - client-services-data:/client-services-deploy
       - tourism-services-data:/tourism-services-deploy
+      - /var/run/docker.sock:/var/run/docker.sock
     ports:
       - 8080:8080
     networks:
@@ -23,6 +24,8 @@ services:
     ports:
       - 8761:8761
       - 9990:9990
+    volumes:
+      - eureka-data:/web-apps
     environment:
       - eureka.instance.preferIpAddress=true
     

@@ -43,7 +43,7 @@ public class ExternalController {
     }
 
     @RequestMapping(
-            value = "/external/status",
+            value = "/status",
             produces = MediaType.APPLICATION_JSON
     )
     public String getStatus(){
@@ -51,7 +51,7 @@ public class ExternalController {
         return "Server is up on port " + port;
     }
 
-    @GetMapping("/external/route")
+    @GetMapping("/route")
     public ResponseEntity getRoute(@RequestParam String origin, @RequestParam String destination){
         GeoApiContext context = new GeoApiContext.Builder()
                 .apiKey("AIzaSyDas7ktt6ipyaGAozPOS9-w58k5FsEXpN0")
@@ -67,7 +67,7 @@ public class ExternalController {
         }
     }
 
-    @GetMapping("/external/country")
+    @GetMapping("/country")
     public ResponseEntity getDestinationInfo(@RequestParam String destination){
         String restCountriesUrl  = "https://restcountries.com/v3.1/name";
         ResponseEntity<String> response = restTemplate.getForEntity(restCountriesUrl + "/"+destination, String.class);
@@ -82,7 +82,7 @@ public class ExternalController {
         }
     }
 
-    @GetMapping("/external/weather")
+    @GetMapping("/weather")
     public ResponseEntity getWeatherInfo(@RequestParam String city,@RequestParam String checkInDate){
         String key = "280543ca0f464683a7d202458211311";
         String APIresponse = restTemplate.getForObject("http://api.weatherapi.com/v1/forecast.json?key={key}&q={city}&days=10&aqi=no&alerts=no", String.class, key, city);

@@ -13,7 +13,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping(
-        value = "/tourists",
         produces =  "application/json"
 )
 public class TouristsController {

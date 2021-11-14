@@ -44,7 +44,7 @@ spring:
             - AuthFilter
 
         - id: tourismServices-id
-          uri: lb://tourismservices-service
+          uri: lb://tourism-services
           predicates:
             - Path=/tourism-services/**
           filters:

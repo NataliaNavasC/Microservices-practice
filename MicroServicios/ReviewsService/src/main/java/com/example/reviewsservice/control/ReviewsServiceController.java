@@ -19,7 +19,7 @@ public class ReviewsServiceController {
     private ReviewRepository repo;
 
     @RequestMapping(
-            value = "/reviews/status",
+            value = "/status",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     public String getStatus(){
@@ -27,7 +27,7 @@ public class ReviewsServiceController {
         return "Server is up on port " + port;
     }
 
-    @GetMapping(value = "/reviews", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Review> getReviews(@RequestParam(name = "serviceID") int serviceId) {
         List<Review> reviews = new ArrayList<>();
         repo.findAll().forEach(r -> {
@@ -37,12 +37,12 @@ public class ReviewsServiceController {
         return reviews;
     }
 
-    @PostMapping("/reviews")
+    @PostMapping("/")
     public Review postReview(@RequestBody Review review) {
         return repo.save(new Review(review.getServiceId(), review.getUsername(), review.getComment()));
     }
 
-//    @PutMapping("/reviews/response")
+//    @PutMapping("/response")
 //    public Review respondReview(@RequestBody Review review) {
 //        Review reviewToUpdate = repo.findById(review.getId()).get();
 //        reviewToUpdate.setResponse(review.getResponse());

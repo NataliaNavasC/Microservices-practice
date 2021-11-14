@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "tourism-services")
+@RequestMapping(value = "")
 public class TourismServicesServiceController{
     @Autowired
     private Environment environment;
