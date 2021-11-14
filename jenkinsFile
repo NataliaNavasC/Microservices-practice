@@ -5,15 +5,39 @@ pipeline {
           steps{
             dir('eurekaserver'){
                 sh 'mvn package'
-                sh 'cp target/eureka.war /deploy'
+                sh 'cp target/eureka.war /entrypoint-deploy'
             }
           }
+        }
+        stage('deploy gateway'){
+          steps{
+            dir('GatewayService'){
+                sh 'mvn package'
+                sh 'cp target/gateway.war /entrypoint-deploy'
+            }
+          }
+        }
+        stage('deploy users') {
+            steps{
+              dir('UserService'){
+                sh 'mvn package'
+                sh 'cp target/users.war /users-deploy'
+              }
+            }
+        }
+        stage('deploy providers') {
+            steps{
+              dir('ProvidersService'){
+                sh 'mvn package'
+                sh 'cp target/providers.war /users-deploy'
+              }
+            }
         }
         stage('deploy tourists') {
             steps{
               dir('TouristService'){
                 sh 'mvn package'
-                sh 'cp target/tourists.war /deploy'
+                sh 'cp target/tourists.war /users-deploy'
               }
             }
         }
