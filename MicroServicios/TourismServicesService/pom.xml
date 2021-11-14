@@ -98,13 +98,13 @@
 						</execution>
 					</executions>
 					<configuration>
-						<schemaLanguage>WSDL</schemaLanguage>
-						<generatePackage>com.microsystem.tourismServicesService.wsdl</generatePackage>
-						<schemas>
-							<schema>
-								<url>http://localhost:8084/search/ws/tourismServices.wsdl</url>
-							</schema>
-						</schemas>
+					<schemaLanguage>WSDL</schemaLanguage>
+					<generatePackage>com.theprogrammerguide.consumesoap.stub</generatePackage>
+					<generateDirectory>${project.basedir}/src/main/java</generateDirectory>
+					<schemaDirectory>${project.basedir}/src/main/resources</schemaDirectory>
+					<schemaIncludes>
+						<include>*.wsdl</include>
+						</schemaIncludes>
 					</configuration>
 			</plugin>
 		</plugins>

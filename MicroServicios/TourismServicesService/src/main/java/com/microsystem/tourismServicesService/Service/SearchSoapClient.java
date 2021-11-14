@@ -3,9 +3,9 @@ package com.microsystem.tourismServicesService.Service;
 import java.util.List;
 
 import com.microsystem.tourismServicesService.Utils.Constans;
-import com.microsystem.tourismServicesService.wsdl.GetSearchRequest;
-import com.microsystem.tourismServicesService.wsdl.GetSearchResponse;
-import com.microsystem.tourismServicesService.wsdl.TourismServiceSOAP;
+import com.theprogrammerguide.consumesoap.stub.GetSearchRequest;
+import com.theprogrammerguide.consumesoap.stub.GetSearchResponse;
+import com.theprogrammerguide.consumesoap.stub.TourismServiceSOAP;
 
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import org.springframework.ws.soap.client.core.SoapActionCallback;
