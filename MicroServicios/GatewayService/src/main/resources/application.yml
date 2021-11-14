@@ -46,7 +46,7 @@ spring:
         - id: tourismServices-id
           uri: lb://tourismservices-service
           predicates:
-            - Path=/services/**
+            - Path=/tourism-services/**
           filters:
             - AuthFilter
 
@@ -63,10 +63,20 @@ spring:
             - Path=/questions/**
           filters:
             - AuthFilter
+        
+        - id: reviews-id
+          uri: lb://reviews-service
+          predicates:
+            - Path=/reviews/**
+          filters:
+            - AuthFilter
+
         - id: external-id
           uri: lb://external-service
           predicates:
             - Path=/external/**
+          filters:
+            - AuthFilter
 
 eureka:
   client:
