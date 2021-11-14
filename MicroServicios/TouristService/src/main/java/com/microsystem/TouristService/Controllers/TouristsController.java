@@ -12,9 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping(
-        produces =  "application/json"
-)
+@RequestMapping(produces =  "application/json", value="/")
 public class TouristsController {
 
     @Autowired
