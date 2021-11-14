@@ -11,7 +11,7 @@
         stage('deploy gateway'){
           steps{
             dir('MicroServicios/GatewayService'){
-                sh 'mvn package'
+                sh 'mvn package -Dmaven.test.skip'
                 sh 'cp target/gateway.jar /eureka-deploy'
                 sh 'docker exec eureka java -jar /web-apps/gateway.jar &'
             }
@@ -20,7 +20,7 @@
         stage('deploy users') {  
           steps{
               dir('MicroServicios/UserService'){
-                sh 'mvn package'
+                sh 'mvn package -Dmaven.test.skip'
                 sh 'cp target/users.war /users-deploy'
               }
             }
@@ -28,7 +28,7 @@
         stage('deploy providers') {
             steps{
               dir('MicroServicios/ProviderService'){
-                sh 'mvn package'
+                sh 'mvn package -Dmaven.test.skip'
                 sh 'cp target/providers.war /users-deploy'
               }
             }
@@ -36,7 +36,7 @@
         stage('deploy tourists') {
             steps{
               dir('MicroServicios/TouristService'){
-                sh 'mvn package'
+                sh 'mvn package -Dmaven.test.skip'
                 sh 'cp target/tourists.war /users-deploy'
               }
             }
@@ -44,7 +44,7 @@
         stage('deploy shopping') {
             steps{
               dir('MicroServicios/ShoppingService'){
-                sh 'mvn package'
+                sh 'mvn package -Dmaven.test.skip'
                 sh 'cp target/shopping.war /client-services-deploy'
               }
             }
@@ -52,7 +52,7 @@
         stage('deploy questions') {
             steps{
               dir('MicroServicios/QuestionsService'){
-                sh 'mvn package'
+                sh 'mvn package -Dmaven.test.skip'
                 sh 'cp target/questions.war /client-services-deploy'
               }
             }
@@ -60,7 +60,7 @@
         stage('deploy search') {
             steps{
               dir('MicroServicios/SearchService'){
-                sh 'mvn package'
+                sh 'mvn package -Dmaven.test.skip'
                 sh 'cp target/search.war /tourism-services-deploy'
               }
             }
@@ -68,7 +68,7 @@
         stage('deploy external') {
             steps{
               dir('MicroServicios/ExternalServices'){
-                sh 'mvn package'
+                sh 'mvn package -Dmaven.test.skip'
                 sh 'cp target/external.war /tourism-services-deploy'
               }
             }
@@ -76,7 +76,7 @@
         stage('deploy toursim services') {
             steps{
               dir('MicroServicios/TourismServicesService'){
-                sh 'mvn package'
+                sh 'mvn package -Dmaven.test.skip'
                 sh 'cp target/tourism-services.war /tourism-services-deploy'
               }
             }
@@ -84,7 +84,7 @@
         stage('deploy reviews') {
             steps{
               dir('MicroServicios/ReviewsService'){
-                sh 'mvn package'
+                sh 'mvn package -Dmaven.test.skip'
                 sh 'cp target/reviews.war /client-services-deploy'
               }
             }
