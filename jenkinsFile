@@ -1,4 +1,24 @@
-            steps{
+  pipeline {
+     agent any
+     stages { 
+        stage('deploy eureka'){
+          steps{
+            dir('MicroServicios/eurekaserver'){
+                sh 'mvn package'
+                sh 'cp target/eureka.war /entrypoint-deploy'
+            }
+          }
+        }
+        stage('deploy gateway'){
+          steps{
+            dir('MicroServicios/GatewayService'){
+                sh 'mvn package'
+                sh 'cp target/gateway.war /entrypoint-deploy'
+            }
+          }
+        }
+        stage('deploy users') {  
+          steps{
               dir('MicroServicios/UserService'){
                 sh 'mvn package'
                 sh 'cp target/users.war /users-deploy'
