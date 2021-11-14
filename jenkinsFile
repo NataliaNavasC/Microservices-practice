@@ -42,7 +42,6 @@
               dir('MicroServicios/SearchService'){
                 sh 'mvn package'
                 sh 'cp target/search.war /tourism-services-deploy'
-                sh 'cp target/search.war /entrypoint-deploy'
               }
             }
         }
