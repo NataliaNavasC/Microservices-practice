@@ -1,4 +1,4 @@
-package Exceptions;
+package com.microsystem.UserService.Exceptions;
 
 public class InvalidFieldsException extends RuntimeException{
     public InvalidFieldsException(){

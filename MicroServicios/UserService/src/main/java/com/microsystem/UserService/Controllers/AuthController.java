@@ -8,6 +8,7 @@ import java.util.Date;
 import javax.annotation.PostConstruct;
 
 import com.microsystem.UserService.Response.TokenResponse;
+import com.microsystem.UserService.Exceptions.InvalidFieldsException;
 import com.microsystem.UserService.Model.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import Exceptions.InvalidFieldsException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

@@ -4,6 +4,7 @@ import javax.ws.rs.core.MediaType;
 
 import com.microsystem.UserService.Request.RegisterProviderForm;
 import com.microsystem.UserService.Request.RegisterTouristForm;
+import com.microsystem.UserService.Exceptions.UserNotFoundException;
 import com.microsystem.UserService.Model.ProviderDTO;
 import com.microsystem.UserService.Model.TouristDTO;
 import com.microsystem.UserService.Model.User;
@@ -21,8 +22,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
-
-import Exceptions.UserNotFoundException;
 
 @RestController
 @RequestMapping(value = "/users")

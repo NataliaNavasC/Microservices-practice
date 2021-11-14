@@ -1,4 +1,4 @@
-package Exceptions;
+package com.microsystem.UserService.Exceptions;
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
 

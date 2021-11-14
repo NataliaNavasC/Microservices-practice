@@ -1,4 +1,4 @@
-package Exceptions;
+package com.microsystem.UserService.Exceptions;
 
 import org.apache.logging.log4j.message.ReusableMessage;
 import org.springframework.http.HttpStatus;

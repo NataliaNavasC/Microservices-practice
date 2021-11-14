@@ -13,6 +13,8 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>ExternalServices</name>
 	<description>Service for communication with external API&apos;s</description>
+	<packaging>war</packaging>
+	
 	<properties>
 		<java.version>11</java.version>
 		<spring-cloud.version>2020.0.4</spring-cloud.version>
@@ -75,6 +77,11 @@
 			<artifactId>json-flattener</artifactId>
 			<version>0.12.0</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>
@@ -89,6 +96,7 @@
 	</dependencyManagement>
 
 	<build>
+		<finalName>external</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
