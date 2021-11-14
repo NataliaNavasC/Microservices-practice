@@ -5,7 +5,7 @@ services:
     container_name: jenkins
     volumes:
       - jenkins-data:/var/jenkins_home
-      - entrypoint-data:/entrypoint-deploy
+      - eureka-data:/eureka-deploy
       - users-data:/users-deploy
       - client-services-data:/client-services-deploy
       - tourism-services-data:/tourism-services-deploy
@@ -14,30 +14,17 @@ services:
     networks:
       - micro-travels-net
 
-  eureka:
-     eureka: 
-        build: ./eureka
-        container_name: eureka
-        networks:
-            - micro-travels-net
-        ports:
-            - 8761:8761
 
-  entrypoint-server:
-    build: ./entryPoint
-    image: tomcat
-    container_name: entrypoint
-    volumes:
-      - entrypoint-data:/usr/local/tomcat/webapps
-    ports:
-      - 8081:8080
-    environment: 
-      - TOMCAT_PASSWORD=tomcat
-      - eureka.client.serviceUrl.defaultZone=http://eureka:8761/eureka/
-    depends_on:
-      - "eureka"
+  eureka: 
+    build: ./eureka
+    container_name: eureka
     networks:
       - micro-travels-net
+    ports:
+      - 8761:8761
+      - 9990:9990
+    environment:
+      - eureka.instance.preferIpAddress=true
     
   users-server:
     build: ./users
@@ -46,10 +33,12 @@ services:
     volumes:
       - users-data:/usr/local/tomcat/webapps
     ports:
-      - 8082:8080
+      - 8081:8080
     environment: 
       - TOMCAT_PASSWORD=tomcat
       - eureka.client.serviceUrl.defaultZone=http://eureka:8761/eureka/
+      - eureka.instance.preferIpAddress=true
+      - server.port=8080
     depends_on:
       - "eureka"
     networks:
@@ -62,10 +51,12 @@ services:
     volumes:
       - client-services-data:/usr/local/tomcat/webapps
     ports:
-      - 8083:8080
+      - 8082:8080
     environment: 
       - TOMCAT_PASSWORD=tomcat
       - eureka.client.serviceUrl.defaultZone=http://eureka:8761/eureka/
+      - eureka.instance.preferIpAddress=true
+      - server.port=8080
     depends_on:
       - "eureka"
     networks:
@@ -78,10 +69,12 @@ services:
     volumes:
       - tourism-services-data:/usr/local/tomcat/webapps
     ports:
-      - 8084:8080
+      - 8083:8080
     environment: 
       - TOMCAT_PASSWORD=tomcat
       - eureka.client.serviceUrl.defaultZone=http://eureka:8761/eureka/
+      - eureka.instance.preferIpAddress=true
+      - server.port=8080
     depends_on:
       - "eureka"
     networks:
@@ -93,7 +86,7 @@ networks:
 
 volumes:
   jenkins-data:
-  entrypoint-data:
+  eureka-data:
   client-services-data:
   tourism-services-data:
   users-data:
