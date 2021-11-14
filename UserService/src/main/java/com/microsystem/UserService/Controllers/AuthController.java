@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import Exceptions.InvalidFieldsException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -47,6 +48,10 @@ public class AuthController {
         produces = {"application/json"}
     )
     public TokenResponse login(@RequestBody User userCredentials) {
+        if( userCredentials.getUsername().equals("") && userCredentials.getPassword().equals("")){
+            throw new InvalidFieldsException();
+        }
+
         User user = userController.getUserByUsername(userCredentials.getUsername());
         
         if (passwordEncoder.matches(CharBuffer.wrap(userCredentials.getPassword()), user.getPassword())) {

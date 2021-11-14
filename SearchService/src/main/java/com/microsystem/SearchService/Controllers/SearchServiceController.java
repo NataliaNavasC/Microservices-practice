@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.microsystem.SearchService.Model.TourismService;
 import com.microsystem.SearchService.Repository.TourismServiceRepository;
-import com.netflix.discovery.converters.Auto;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
@@ -12,15 +11,15 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
-import services.xsd.GetSearchReponse;
 import services.xsd.GetSearchRequest;
+import services.xsd.GetSearchResponse;
 import services.xsd.ObjectFactory;
 import services.xsd.TourismServiceSOAP;
 
 @Endpoint
 public class SearchServiceController {
     
-    private static final String NAMESPACE_URI = "http://services/xsd/";
+    private static final String NAMESPACE_URI = "http://services/xsd";
     private ObjectFactory factory;
 
     @Autowired
@@ -33,7 +32,7 @@ public class SearchServiceController {
     
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getSearchRequest")
     @ResponsePayload
-    public GetSearchReponse getSearch(@RequestPayload GetSearchRequest request){
+    public GetSearchResponse getSearch(@RequestPayload GetSearchRequest request){
         List<TourismService> entities;
         
         if(request.getTitle() == null){
@@ -42,7 +41,7 @@ public class SearchServiceController {
         }else{
             entities = repository.findByTitleContains(request.getTitle());
         }
-        GetSearchReponse response = factory.createGetSearchReponse();
+        GetSearchResponse response = factory.createGetSearchResponse();
         
         for (TourismService serviceEntity : entities) {
             TourismServiceSOAP service = factory.createTourismServiceSOAP();

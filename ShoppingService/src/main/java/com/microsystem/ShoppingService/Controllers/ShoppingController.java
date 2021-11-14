@@ -2,6 +2,8 @@ package com.microsystem.ShoppingService.Controllers;
 
 import com.microsystem.Request.PaymentRequest;
 import com.microsystem.Request.ShoppingCartRequest;
+import com.microsystem.ShoppingService.Exceptions.ShoppingExceptions.ShoppingCartNotFoundException;
+import com.microsystem.ShoppingService.Exceptions.ShoppingExceptions.ShoppingCartUsernameEmptyException;
 import com.microsystem.ShoppingService.Model.Purchase;
 import com.microsystem.ShoppingService.Model.ShoppingCart;
 import com.microsystem.ShoppingService.Repository.IShoppingRepository;
@@ -45,7 +47,12 @@ public class ShoppingController {
         produces = "application/json"
     )
     public ShoppingCart createShoppingCart(@RequestBody ShoppingCart newShoppingCart){
-        return this.shoppingRepository.save(newShoppingCart);
+        if(newShoppingCart.getUserName() == ""){
+            throw new ShoppingCartUsernameEmptyException();
+        }
+        else{
+            return this.shoppingRepository.save(newShoppingCart);
+        }
     }
 
     @RequestMapping(
@@ -54,7 +61,13 @@ public class ShoppingController {
         produces = "application/json"
     )
     public ShoppingCart getShoppingCartByUsername(@PathVariable String username){
-        return this.shoppingRepository.findShoppingCartByUserName(username);
+        ShoppingCart shoppingCart = shoppingRepository.findShoppingCartByUserName(username);
+        if(shoppingCart != null){
+            return shoppingCart;
+        }
+        else{
+            throw new ShoppingCartNotFoundException(username);
+        }
     }
 
     @RequestMapping(
@@ -65,8 +78,13 @@ public class ShoppingController {
     )
     public ShoppingCart addToShoppingCart(@PathVariable int id, @RequestBody ShoppingCartRequest idServiceToAdd){
         ShoppingCart shoppingCartToUpdate = this.shoppingRepository.findById(id).get();
-        shoppingCartToUpdate.getServicesIds().add(idServiceToAdd.getShoppingCartId());
-        return this.shoppingRepository.save(shoppingCartToUpdate);
+        if(shoppingCartToUpdate != null){
+            shoppingCartToUpdate.getServicesIds().add(idServiceToAdd.getShoppingCartId());
+            return this.shoppingRepository.save(shoppingCartToUpdate);
+        }
+        else{
+            throw new ShoppingCartNotFoundException(id);
+        }
     }
 
     @RequestMapping(
@@ -76,8 +94,13 @@ public class ShoppingController {
     )
     public void deleteFromShoppingCart(@PathVariable int id,@RequestBody ShoppingCartRequest serviceIdToEliminate) {
         ShoppingCart shoppingCartToUpdate = this.shoppingRepository.findById(id).get();
-        shoppingCartToUpdate.getServicesIds().remove((Object)serviceIdToEliminate.getShoppingCartId());
-        this.shoppingRepository.save(shoppingCartToUpdate);
+        if(shoppingCartToUpdate != null){
+            shoppingCartToUpdate.getServicesIds().remove((Object)serviceIdToEliminate.getShoppingCartId());
+            this.shoppingRepository.save(shoppingCartToUpdate);
+        }
+        else{
+            throw new ShoppingCartNotFoundException(id);
+        }
     }
 
     @RequestMapping(
@@ -88,11 +111,14 @@ public class ShoppingController {
     )
     public Purchase makePayment(@PathVariable int id, @RequestBody PaymentRequest paymentMethod){
         ShoppingCart shoppingCart = this.shoppingRepository.findById(id).get();
-        //this.shoppingRepository.delete(shoppingCart);
-        Purchase purchase =  purchaseController.createPurchase(shoppingCart, paymentMethod.getPaymentMethod());
-        shoppingCart.getServicesIds().clear();
-        this.shoppingRepository.save(shoppingCart);
-        return purchase;
+        if(shoppingCart != null){
+            Purchase purchase =  purchaseController.createPurchase(shoppingCart, paymentMethod.getPaymentMethod());
+            shoppingCart.getServicesIds().clear();
+            this.shoppingRepository.save(shoppingCart);
+            return purchase;
+        }else{
+            throw new ShoppingCartNotFoundException(id);
+        }
     }
 
     
