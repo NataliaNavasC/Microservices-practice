@@ -13,7 +13,6 @@
             dir('MicroServicios/GatewayService'){
                 sh 'mvn package -Dmaven.test.skip'
                 sh 'cp target/gateway.jar /eureka-deploy'
-                sh 'docker exec eureka java -jar /web-apps/gateway.jar &'
             }
           }
         }
@@ -91,9 +90,11 @@
         }
         stage('restart & deploy') {
             steps{
+              sh 'docker restart eureka'
               sh 'docker restart users'
               sh 'docker restart tourism-services'
               sh 'docker restart client-services'
+              sh 'docker exec eureka java -jar /web-apps/gateway.jar &'
             }
         }
     }
