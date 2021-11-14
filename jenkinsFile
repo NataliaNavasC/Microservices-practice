@@ -3,9 +3,9 @@
      stages {
         stage('clean'){
           steps{
-            sh 'docker exec users rm -r webapps/*'
-            sh 'docker exec client-services rm -r webapps/*'
-            sh 'docker exec tourism-services rm -r webapps/*'
+            sh 'rm -r /users-deploy/*'
+            sh 'rm -r /client-services-deploy/*'
+            sh 'rm -r /tourism-services-deploy/*'
           }
         }
         stage('deploy gateway'){
