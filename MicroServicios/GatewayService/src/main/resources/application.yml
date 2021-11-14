@@ -39,7 +39,7 @@ spring:
         - id: purchases-id
           uri: lb://purchases-service
           predicates:
-            - Path=/shopping-cart/**
+            - Path=/shopping/**
           filters:
             - AuthFilter
 
