@@ -71,7 +71,7 @@ public class AcommodationServiceController {
     )
     public AccomodationService createService(@RequestBody AccomodationService newService, @RequestParam String origin){
         //Map
-        newService.setMapResourceLink(Utils.GATEWAY_URL+"/external/route?origin="+ origin +"&destination="+newService.getLocation());
+        newService.setMapResourceLink(Utils.GATEWAY_URL+"/external/route?origin="+ origin +"&destination="+newService.getLocation().replace(" ","+"));
 
         //Weather
         LocalDate ldate = newService.getCheckInDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
