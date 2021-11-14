@@ -1,0 +1,35 @@
+services:
+  jenkins:
+    build: ./jenkins
+    image: jenkins
+    container_name: jenkins
+    volumes:
+      - new-jenkins-data:/var/jenkins_home
+      - tomcat-data:/deploy
+    ports:
+      - 8080:8080
+    networks:
+      - micro-travels-net
+
+  tomcat-server:
+    build: ./tomcat
+    image: tomcat
+    container_name: tomcat
+    volumes:
+      - tomcat-data:/usr/local/tomcat/webapps
+    ports:
+      - 8081:8080
+    environment: 
+      # Cambiar por un password más seguro
+      - TOMCAT_PASSWORD=tomcat
+    networks:
+      - micro-travels-net
+
+networks:
+  micro-travels-net:
+    driver: bridge
+
+volumes:
+  new-jenkins-data:
+  tomcat-data:
+  mariadb-data:
