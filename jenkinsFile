@@ -6,7 +6,7 @@
             dir('MicroServicios/GatewayService'){
                 sh 'mvn package'
                 sh 'cp target/gateway.jar /eureka-deploy'
-                sh 'docker exec eureka java -jar gateway.jar'
+                sh 'docker exec eureka java -jar /web-apps/gateway.jar'
             }
           }
         }
