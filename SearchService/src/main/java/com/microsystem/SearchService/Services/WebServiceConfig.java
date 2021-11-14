@@ -27,7 +27,7 @@ public class WebServiceConfig extends WsConfigurerAdapter {
 		DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
 		wsdl11Definition.setPortTypeName("tourismServicesPort");
 		wsdl11Definition.setLocationUri("/ws");
-		wsdl11Definition.setTargetNamespace("http://services/xsd/");
+		wsdl11Definition.setTargetNamespace("http://services/xsd");
 		wsdl11Definition.setSchema(tourismSchema);
 		return wsdl11Definition;
 	}
