@@ -8,7 +8,7 @@
             sh 'rm -rf /tourism-services-deploy/*'
           }
         }
-        stage('deploy gateway'){
+        stage('build gateway'){
           steps{
             dir('MicroServicios/GatewayService'){
                 sh 'mvn package -Dmaven.test.skip'
@@ -17,7 +17,7 @@
             }
           }
         }
-        stage('deploy users') {  
+        stage('build users') {  
           steps{
               dir('MicroServicios/UserService'){
                 sh 'mvn package -Dmaven.test.skip'
@@ -25,7 +25,7 @@
               }
             }
         }
-        stage('deploy providers') {
+        stage('build providers') {
             steps{
               dir('MicroServicios/ProviderService'){
                 sh 'mvn package -Dmaven.test.skip'
@@ -33,7 +33,7 @@
               }
             }
         }
-        stage('deploy tourists') {
+        stage('build tourists') {
             steps{
               dir('MicroServicios/TouristService'){
                 sh 'mvn package -Dmaven.test.skip'
@@ -41,7 +41,7 @@
               }
             }
         }
-        stage('deploy shopping') {
+        stage('build shopping') {
             steps{
               dir('MicroServicios/ShoppingService'){
                 sh 'mvn package -Dmaven.test.skip'
@@ -49,7 +49,7 @@
               }
             }
         }
-        stage('deploy questions') {
+        stage('build questions') {
             steps{
               dir('MicroServicios/QuestionsService'){
                 sh 'mvn package -Dmaven.test.skip'
@@ -57,7 +57,7 @@
               }
             }
         }
-        stage('deploy search') {
+        stage('build search') {
             steps{
               dir('MicroServicios/SearchService'){
                 sh 'mvn package -Dmaven.test.skip'
@@ -65,7 +65,7 @@
               }
             }
         }
-        stage('deploy external') {
+        stage('build external') {
             steps{
               dir('MicroServicios/ExternalServices'){
                 sh 'mvn package -Dmaven.test.skip'
@@ -73,7 +73,7 @@
               }
             }
         }
-        stage('deploy toursim services') {
+        stage('build toursim services') {
             steps{
               dir('MicroServicios/TourismServicesService'){
                 sh 'mvn package -Dmaven.test.skip'
@@ -81,12 +81,19 @@
               }
             }
         }
-        stage('deploy reviews') {
+        stage('build reviews') {
             steps{
               dir('MicroServicios/ReviewsService'){
                 sh 'mvn package -Dmaven.test.skip'
                 sh 'cp target/reviews.war /client-services-deploy'
               }
+            }
+        }
+        stage('restart & deploy') {
+            steps{
+              sh 'docker restart users'
+              sh 'docker restart tourism-services'
+              sh 'docker restart client-services'
             }
         }
     }
