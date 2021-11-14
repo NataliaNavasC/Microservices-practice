@@ -58,11 +58,11 @@ public class ProvidersController {
                     providerRequest.getPhoneNumber(),
                     providerRequest.getWebPage(),
                     providerRequest.getSocialNetwork());
-            providersRepostitory.save(provider);
+            provider = providersRepostitory.save(provider);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(e.getMessage());
         }
-        return ResponseEntity.status(HttpStatus.CREATED).body("Creado Correctamente");
+        return ResponseEntity.status(HttpStatus.CREATED).body(provider);
     }
 
     @GetMapping("")
