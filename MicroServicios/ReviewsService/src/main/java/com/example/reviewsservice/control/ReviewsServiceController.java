@@ -42,4 +42,12 @@ public class ReviewsServiceController {
         return repo.save(review);
     }
 
+    @PutMapping("/")
+    public Review putReview(@RequestBody Review review) {
+        Review newReview = repo.findById(review.getId()).get();
+        newReview.setComment(review.getComment());
+        newReview.setStars(review.getStars());
+        return repo.save(review);
+    }
+
 }
