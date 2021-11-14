@@ -25,7 +25,7 @@ public class FoodServiceController {
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     public String getStatus(){
-        String port = environment.getProperty("local.server.port");
+        String port = environment.getProperty("server.port");
         return "Server is up on port " + port;
     }
 
