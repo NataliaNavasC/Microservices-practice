@@ -3,9 +3,9 @@
      stages {
         stage('clean'){
           steps{
-            sh 'rm -r /users-deploy/*'
-            sh 'rm -r /client-services-deploy/*'
-            sh 'rm -r /tourism-services-deploy/*'
+            sh 'rm -rf /users-deploy/*'
+            sh 'rm -rf /client-services-deploy/*'
+            sh 'rm -rf /tourism-services-deploy/*'
           }
         }
         stage('deploy gateway'){
