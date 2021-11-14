@@ -12,6 +12,7 @@ public class Review {
     private int serviceId;
     private String username;
     private String comment;
+    private int stars;
 
     public Review() {
     }
@@ -53,4 +54,14 @@ public class Review {
     public void setComment(String comment) {
         this.comment = comment;
     }
+
+    public int getStars() {
+        return stars;
+    }
+
+    public void setStars(int stars) {
+        this.stars = stars;
+    }
+
+    
 }

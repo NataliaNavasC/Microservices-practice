@@ -39,13 +39,7 @@ public class ReviewsServiceController {
 
     @PostMapping("/")
     public Review postReview(@RequestBody Review review) {
-        return repo.save(new Review(review.getServiceId(), review.getUsername(), review.getComment()));
+        return repo.save(review);
     }
 
-//    @PutMapping("/response")
-//    public Review respondReview(@RequestBody Review review) {
-//        Review reviewToUpdate = repo.findById(review.getId()).get();
-//        reviewToUpdate.setResponse(review.getResponse());
-//        return  repo.save(reviewToUpdate);
-//    }
 }
