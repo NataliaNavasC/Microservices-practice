@@ -1,6 +1,13 @@
   pipeline {
      agent any
-     stages { 
+     stages {
+        stage('clean'){
+          steps{
+            sh 'docker exec users rm -r webapps/*'
+            sh 'docker exec client-services rm -r webapps/*'
+            sh 'docker exec tourism-services rm -r webapps/*'
+          }
+        }
         stage('deploy gateway'){
           steps{
             dir('MicroServicios/GatewayService'){
