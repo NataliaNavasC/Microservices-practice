@@ -1,11 +1,21 @@
   pipeline {
      agent any
      stages { 
+        stage('deploy eureka'){
+          steps{
+            dir('MicroServicios/eurekaserver'){
+                sh 'mvn package'
+                sh 'cp target/eureka.jar /eureka-deploy'
+                sh 'docker exec eureka java -jar eureka.jar'
+            }
+          }
+        }
         stage('deploy gateway'){
           steps{
             dir('MicroServicios/GatewayService'){
                 sh 'mvn package'
-                sh 'cp target/gateway.war /entrypoint-deploy'
+                sh 'cp target/gateway.jar /eureka-deploy'
+                sh 'docker exec eureka java -jar eureka.jar'
             }
           }
         }
