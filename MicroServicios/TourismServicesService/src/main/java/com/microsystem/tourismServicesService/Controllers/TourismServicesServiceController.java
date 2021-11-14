@@ -3,7 +3,7 @@ package com.microsystem.tourismServicesService.Controllers;
 import com.microsystem.tourismServicesService.Model.TourismService;
 import com.microsystem.tourismServicesService.Repository.ITourismServiceRepository;
 import com.microsystem.tourismServicesService.Service.SearchSoapClient;
-import com.microsystem.tourismServicesService.wsdl.TourismServiceSOAP;
+import com.microsystem.tourismServicesService.stub.TourismServiceSOAP;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;

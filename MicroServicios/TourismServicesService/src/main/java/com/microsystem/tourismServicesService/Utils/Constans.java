@@ -1,6 +1,6 @@
 package com.microsystem.tourismServicesService.Utils;
 
 public class Constans {
-    public static String SearchSoapURL = "http://localhost:8084/search/ws";
-    public static String SearchSoapClassPackage = "com.microsystem.tourismServicesService.wsdl";
+    public static String SearchSoapURL = "http://localhost:2220/ws";
+    public static String SearchSoapClassPackage = "com.microsystem.tourismServicesService.stub";
 }
