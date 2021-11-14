@@ -16,6 +16,14 @@
             }
           }
         }
+        stage('build search') {
+            steps{
+              dir('MicroServicios/SearchService'){
+                sh 'mvn package -Dmaven.test.skip'
+                sh 'cp target/search.jar /eureka-deploy'
+              }
+            }
+        }
         stage('build users') {  
           steps{
               dir('MicroServicios/UserService'){
@@ -56,14 +64,6 @@
               }
             }
         }
-        stage('build search') {
-            steps{
-              dir('MicroServicios/SearchService'){
-                sh 'mvn package -Dmaven.test.skip'
-                sh 'cp target/search.war /tourism-services-deploy'
-              }
-            }
-        }
         stage('build external') {
             steps{
               dir('MicroServicios/ExternalServices'){
@@ -95,6 +95,7 @@
               sh 'docker restart tourism-services'
               sh 'docker restart client-services'
               sh 'docker exec eureka java -jar /web-apps/gateway.jar &'
+              sh 'docker exec eureka java -jar /web-apps/search.jar &'
             }
         }
     }
