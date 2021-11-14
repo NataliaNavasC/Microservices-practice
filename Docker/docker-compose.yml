@@ -6,6 +6,9 @@ services:
     volumes:
       - jenkins-data:/var/jenkins_home
       - entrypoint-data:/entrypoint-deploy
+      - users-data:/users-deploy
+      - client-services-data:/client-services-deploy
+      - tourism-services-data:/tourism-services-deploy
     ports:
       - 8080:8080
     networks:
