@@ -27,7 +27,7 @@ pipeline {
         }
         stage('deploy providers') {
             steps{
-              dir('MicroServicios/ProvidersService'){
+              dir('MicroServicios/ProviderService'){
                 sh 'mvn package'
                 sh 'cp target/providers.war /users-deploy'
               }
