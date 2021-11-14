@@ -1,14 +1,25 @@
 package com.microsystem.tourismServicesService.Controllers;
 
 import com.microsystem.tourismServicesService.Model.AccomodationService;
+import com.microsystem.tourismServicesService.Model.CountryInformation;
 import com.microsystem.tourismServicesService.Repository.IAccomodationServiceRepository;
+import com.microsystem.tourismServicesService.Utils.Utils;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+
+import javax.websocket.server.PathParam;
 
 @RestController
 @RequestMapping(value = "/tourism-services/accomodation")
@@ -19,6 +30,15 @@ public class AcommodationServiceController {
     @Autowired
     private IAccomodationServiceRepository accomodationServiceRepository;
     
+    @Autowired
+    RestTemplate restTemplate;
+
+    @Bean
+    @LoadBalanced
+    RestTemplate restTemplate(){
+        return new RestTemplate();
+    }
+
 
     @RequestMapping(
             value = "/status",
@@ -49,7 +69,19 @@ public class AcommodationServiceController {
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
     )
-    public AccomodationService createService(@RequestBody AccomodationService newService){
+    public AccomodationService createService(@RequestBody AccomodationService newService, @RequestParam String origin){
+        //Map
+        newService.setMapResourceLink(Utils.GATEWAY_URL+"/external/route?origin="+ origin +"&destination="+newService.getLocation());
+
+        //Weather
+        LocalDate ldate = newService.getCheckInDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        String dateStr = ldate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        newService.setWeatherResourceLink(Utils.GATEWAY_URL+"/external/weather?city=" + newService.getCity() + "&checkInDate="+ dateStr);
+
+        //Country
+        CountryInformation countryInformation = restTemplate.getForObject("http://external-service/external/country?destination={destination}", CountryInformation.class, newService.getCountryInformation().getOfficialName());
+        newService.setCountryInformation(countryInformation);
+        
         return this.accomodationServiceRepository.save(newService);
     }
 
