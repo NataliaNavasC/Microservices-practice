@@ -41,5 +41,53 @@ pipeline {
               }
             }
         }
+        stage('deploy shopping') {
+            steps{
+              dir('ShoppingService'){
+                sh 'mvn package'
+                sh 'cp target/shopping.war /client-services-deploy'
+              }
+            }
+        }
+        stage('deploy questions') {
+            steps{
+              dir('QuestionsService'){
+                sh 'mvn package'
+                sh 'cp target/questions.war /client-services-deploy'
+              }
+            }
+        }
+        stage('deploy reviews') {
+            steps{
+              dir('ReviewsService'){
+                sh 'mvn package'
+                sh 'cp target/reviews.war /client-services-deploy'
+              }
+            }
+        }
+        stage('deploy external') {
+            steps{
+              dir('ExternalServices'){
+                sh 'mvn package'
+                sh 'cp target/external.war /tourism-services-deploy'
+              }
+            }
+        }
+        stage('deploy search') {
+            steps{
+              dir('SearchService'){
+                sh 'mvn package'
+                sh 'cp target/search.war /tourism-services-deploy'
+              }
+            }
+        }
+        stage('deploy toursim services') {
+            steps{
+              dir('TourismServicesService'){
+                sh 'mvn package'
+                sh 'cp target/tourism-services.war /tourism-services-deploy'
+              }
+            }
+        }
     }
 }
