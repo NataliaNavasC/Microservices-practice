@@ -3,7 +3,7 @@ pipeline {
   stages { 
         stage('deploy eureka'){
           steps{
-            dir('eurekaserver'){
+            dir('MicroServicios/eurekaserver'){
                 sh 'mvn package'
                 sh 'cp target/eureka.war /entrypoint-deploy'
             }
@@ -11,7 +11,7 @@ pipeline {
         }
         stage('deploy gateway'){
           steps{
-            dir('GatewayService'){
+            dir('MicroServicios/GatewayService'){
                 sh 'mvn package'
                 sh 'cp target/gateway.war /entrypoint-deploy'
             }
@@ -19,7 +19,7 @@ pipeline {
         }
         stage('deploy users') {
             steps{
-              dir('UserService'){
+              dir('MicroServicios/UserService'){
                 sh 'mvn package'
                 sh 'cp target/users.war /users-deploy'
               }
@@ -27,7 +27,7 @@ pipeline {
         }
         stage('deploy providers') {
             steps{
-              dir('ProvidersService'){
+              dir('MicroServicios/ProvidersService'){
                 sh 'mvn package'
                 sh 'cp target/providers.war /users-deploy'
               }
@@ -35,7 +35,7 @@ pipeline {
         }
         stage('deploy tourists') {
             steps{
-              dir('TouristService'){
+              dir('MicroServicios/TouristService'){
                 sh 'mvn package'
                 sh 'cp target/tourists.war /users-deploy'
               }
@@ -43,7 +43,7 @@ pipeline {
         }
         stage('deploy shopping') {
             steps{
-              dir('ShoppingService'){
+              dir('MicroServicios/ShoppingService'){
                 sh 'mvn package'
                 sh 'cp target/shopping.war /client-services-deploy'
               }
@@ -51,7 +51,7 @@ pipeline {
         }
         stage('deploy questions') {
             steps{
-              dir('QuestionsService'){
+              dir('MicroServicios/QuestionsService'){
                 sh 'mvn package'
                 sh 'cp target/questions.war /client-services-deploy'
               }
@@ -59,7 +59,7 @@ pipeline {
         }
         stage('deploy reviews') {
             steps{
-              dir('ReviewsService'){
+              dir('MicroServicios/ReviewsService'){
                 sh 'mvn package'
                 sh 'cp target/reviews.war /client-services-deploy'
               }
@@ -67,7 +67,7 @@ pipeline {
         }
         stage('deploy search') {
             steps{
-              dir('SearchService'){
+              dir('MicroServicios/SearchService'){
                 sh 'mvn package'
                 sh 'cp target/search.war /tourism-services-deploy'
               }
@@ -75,7 +75,7 @@ pipeline {
         }
         stage('deploy external') {
             steps{
-              dir('ExternalServices'){
+              dir('MicroServicios/ExternalServices'){
                 sh 'mvn package'
                 sh 'cp target/external.war /tourism-services-deploy'
               }
@@ -83,7 +83,7 @@ pipeline {
         }
         stage('deploy toursim services') {
             steps{
-              dir('TourismServicesService'){
+              dir('MicroServicios/TourismServicesService'){
                 sh 'mvn package'
                 sh 'cp target/tourism-services.war /tourism-services-deploy'
               }
