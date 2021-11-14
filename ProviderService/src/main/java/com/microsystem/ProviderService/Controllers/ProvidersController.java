@@ -1,6 +1,6 @@
 package com.microsystem.ProviderService.Controllers;
 
-import com.microsystem.ProviderService.Model.Provider;
+import com.microsystem.ProviderService.Model.*;
 import com.microsystem.ProviderService.Repository.IProvidersRepostitory;
 import com.microsystem.ProviderService.Request.ProviderRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,6 @@ import javax.ws.rs.core.MediaType;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 
 @RestController
 public class ProvidersController {
@@ -48,15 +47,20 @@ public class ProvidersController {
     @PostMapping("/providers")
     @Consumes(MediaType.APPLICATION_JSON)
     public ResponseEntity createProvider(@RequestBody ProviderRequest providerRequest){
-        Provider provider = new Provider(
-                providerRequest.getName(),
-                providerRequest.getUsername(),
-                providerRequest.getAge(),
-                providerRequest.getPhoto(),
-                providerRequest.getDescription(),
-                providerRequest.getPhoneNumber(),
-                providerRequest.getWebPage(),
-                providerRequest.getSocialNetwork());
+        Provider provider = null;
+        try {
+            provider = new Provider(
+                    providerRequest.getName(),
+                    providerRequest.getUsername(),
+                    providerRequest.getAge(),
+                    providerRequest.getPhoto(),
+                    providerRequest.getDescription(),
+                    providerRequest.getPhoneNumber(),
+                    providerRequest.getWebPage(),
+                    providerRequest.getSocialNetwork());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(e.getMessage());
+        }
         providersRepostitory.save(provider);
         return ResponseEntity.status(HttpStatus.CREATED).body("Creado Correctamente");
     }
@@ -99,15 +103,42 @@ public class ProvidersController {
     }
 
     @GetMapping("/providers/{idProvider}/services")
-    public ResponseEntity getServicesByProviderId(){
-        //TODO: Llamar al servicio services
-        return null;
+    public ResponseEntity getServicesByProviderId(@PathVariable int idProvider){
+        List<TourismService> response = restTemplate.getForObject("http://tourismservices-service/provider/"+idProvider,List.class);
+        return ResponseEntity.status(HttpStatus.FOUND).body(response);
     }
 
-    @PostMapping("/providers/{idProvider}/services")
-    public ResponseEntity createServicesByProviderId(){
-        //TODO: Llamar al servicio services
-        return null;
+    @PostMapping("/providers/{idProvider}/tourismService")
+    public ResponseEntity createTourismServicesByProviderId(@PathVariable("idProvider") int idProvider, @RequestBody TourismService request){
+        request.setProviderId(idProvider);
+        TourismService response = restTemplate.postForObject("http://tourismservices-service/services",request,TourismService.class);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(response);
+    }
+
+    @PostMapping("/providers/{idProvider}/AccomodationService")
+    public ResponseEntity createAccomodationServiceByProviderId(@PathVariable("idProvider") int idProvider, @RequestBody AccomodationService request){
+        request.setProviderId(idProvider);
+        AccomodationService response = restTemplate.postForObject("http://tourismservices-service/accomodation",request,AccomodationService.class);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(response);
+    }
+
+    @PostMapping("/providers/{idProvider}/ecoTripService")
+    public ResponseEntity createEcoTripServiceByProviderId(@PathVariable("idProvider") int idProvider, @RequestBody EcoTripService request){
+        request.setProviderId(idProvider);
+        EcoTripService response = restTemplate.postForObject("http://tourismservices-service/ecoTrip",request,EcoTripService.class);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(response);
+    }
+
+    public ResponseEntity createTransportServiceByProviderId(@PathVariable("idProvider") int idProvider, @RequestBody TransportService request){
+        request.setProviderId(idProvider);
+        TransportService response = restTemplate.postForObject("http://tourismservices-service/transport",request,TransportService.class);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(response);
+    }
+    @PostMapping("/providers/{idProvider}/food")
+    public ResponseEntity createFoodService(@PathVariable("idProvider") int idProvider, @RequestBody FoodService request){
+        request.setProviderId(idProvider);
+        FoodService response = restTemplate.postForObject("http://tourismservices-service/provider/food",request,FoodService.class);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(response);
     }
 
     @DeleteMapping("/providers/{userName}")

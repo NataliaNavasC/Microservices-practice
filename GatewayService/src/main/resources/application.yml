@@ -1,69 +1,72 @@
 server:
-    port: 9990
+  port: 9990
 
 management:
   endpoint.gateway.enabled: true
   endpoints.web.exposure.include: gateway
 
-
 spring:
-    application.name: gateway 
-    cloud:
-        gateway:
-            discovery:
-                locator:
-                    enabled: true
-            routes:
-                # Unprotected
-                - id: users-signin-id
-                  uri: lb://users-service
-                  predicates:
-                      - Path=/login, /users/**
-                      - Method=POST
+  application.name: gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        # Unprotected
+        - id: users-signin-id
+          uri: lb://users-service
+          predicates:
+            - Path=/login, /users/**
+            - Method=POST
 
-                # Protected
-                - id: users-id
-                  uri: lb://users-service
-                  predicates:
-                      - Path=/users/**
-                      - Method=GET,PUT,DELETE
-                  filters:
-                    - AuthFilter  
-                
-                - id: providers-id
-                  uri: lb://providers-service
-                  predicates:
-                      - Path=/providers/**
-                  filters:
-                    - AuthFilter 
-                     
-                - id: purchases-id
-                  uri: lb://purchases-service
-                  predicates:
-                      - Path=/shopping-cart/**
-                  filters:
-                    - AuthFilter  
+        # Protected
+        - id: users-id
+          uri: lb://users-service
+          predicates:
+            - Path=/users/**
+            - Method=GET,PUT,DELETE
+          filters:
+            - AuthFilter
 
-                - id: tourismServices-id
-                  uri: lb://tourismservices-service
-                  predicates:
-                      - Path=/services/**
-                  filters:
-                    - AuthFilter  
+        - id: providers-id
+          uri: lb://providers-service
+          predicates:
+            - Path=/providers/**
+          filters:
+            - AuthFilter
 
-                - id: tourists-id
-                  uri: lb://tourists-service
-                  predicates:
-                      - Path=/tourists/**
-                  filters:
-                    - AuthFilter
+        - id: purchases-id
+          uri: lb://purchases-service
+          predicates:
+            - Path=/shopping-cart/**
+          filters:
+            - AuthFilter
 
-                - id: questions-id
-                  uri: lb://questions-service
-                  predicates:
-                      - Path=/questions/**
-                  filters:
-                    - AuthFilter
+        - id: tourismServices-id
+          uri: lb://tourismservices-service
+          predicates:
+            - Path=/services/**
+          filters:
+            - AuthFilter
+
+        - id: tourists-id
+          uri: lb://tourists-service
+          predicates:
+            - Path=/tourists/**
+          filters:
+            - AuthFilter
+
+        - id: questions-id
+          uri: lb://questions-service
+          predicates:
+            - Path=/questions/**
+          filters:
+            - AuthFilter
+        - id: external-id
+          uri: lb://external-service
+          predicates:
+            - Path=/external/**
 
 eureka:
   client:
