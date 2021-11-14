@@ -65,19 +65,19 @@ pipeline {
               }
             }
         }
-        stage('deploy external') {
-            steps{
-              dir('ExternalServices'){
-                sh 'mvn package'
-                sh 'cp target/external.war /tourism-services-deploy'
-              }
-            }
-        }
         stage('deploy search') {
             steps{
               dir('SearchService'){
                 sh 'mvn package'
                 sh 'cp target/search.war /tourism-services-deploy'
+              }
+            }
+        }
+        stage('deploy external') {
+            steps{
+              dir('ExternalServices'){
+                sh 'mvn package'
+                sh 'cp target/external.war /tourism-services-deploy'
               }
             }
         }
