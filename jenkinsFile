@@ -57,14 +57,6 @@ pipeline {
               }
             }
         }
-        stage('deploy reviews') {
-            steps{
-              dir('MicroServicios/ReviewsService'){
-                sh 'mvn package'
-                sh 'cp target/reviews.war /client-services-deploy'
-              }
-            }
-        }
         stage('deploy search') {
             steps{
               dir('MicroServicios/SearchService'){
@@ -86,6 +78,14 @@ pipeline {
               dir('MicroServicios/TourismServicesService'){
                 sh 'mvn package'
                 sh 'cp target/tourism-services.war /tourism-services-deploy'
+              }
+            }
+        }
+        stage('deploy reviews') {
+            steps{
+              dir('MicroServicios/ReviewsService'){
+                sh 'mvn package'
+                sh 'cp target/reviews.war /client-services-deploy'
               }
             }
         }
