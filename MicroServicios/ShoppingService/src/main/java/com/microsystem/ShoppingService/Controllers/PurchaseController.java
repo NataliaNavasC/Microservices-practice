@@ -51,7 +51,7 @@ public class PurchaseController {
     private List<Service> getServicesById(List<Integer> servicesIds){
         List<Service> servicesOnShoppingCart = new ArrayList<Service>();
         for (int id : servicesIds) {
-            Service response = restTemplate.getForObject("http://tourismservices-service/services/{id}", Service.class, id);
+            Service response = restTemplate.getForObject("http://tourismservices-service/tourism-services/{id}", Service.class, id);
             servicesOnShoppingCart.add(response);
         }
         return servicesOnShoppingCart;
