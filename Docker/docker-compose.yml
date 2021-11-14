@@ -9,7 +9,7 @@ services:
       - users-data:/users-deploy
       - client-services-data:/client-services-deploy
       - tourism-services-data:/tourism-services-deploy
-      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock #this volume is neccessary to use docker inside jenkins
     ports:
       - 8080:8080
     networks:
@@ -22,9 +22,9 @@ services:
     networks:
       - micro-travels-net
     ports:
-      - 8761:8761
-      - 9990:9990
-      - 2220:2220
+      - 8761:8761 #eurekaserver
+      - 9990:9990 #gateway
+      - 2220:2220 #SOAP
     volumes:
       - eureka-data:/web-apps
     environment:
@@ -37,7 +37,7 @@ services:
     volumes:
       - users-data:/usr/local/tomcat/webapps
     ports:
-      - 8081:8080
+      - 8081:8080 #users(auth), tourists, providers
     environment: 
       - TOMCAT_PASSWORD=tomcat
       - eureka.client.serviceUrl.defaultZone=http://eureka:8761/eureka/
@@ -55,7 +55,7 @@ services:
     volumes:
       - client-services-data:/usr/local/tomcat/webapps
     ports:
-      - 8082:8080
+      - 8082:8080 #reviews, questions, questions
     environment: 
       - TOMCAT_PASSWORD=tomcat
       - eureka.client.serviceUrl.defaultZone=http://eureka:8761/eureka/
@@ -69,7 +69,7 @@ services:
   tourism-services-server:
     build: ./tourismServices
     image: tomcat
-    container_name: tourism-services
+    container_name: tourism-services #external, tourismServices
     volumes:
       - tourism-services-data:/usr/local/tomcat/webapps
     ports:

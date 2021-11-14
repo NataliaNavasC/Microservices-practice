@@ -1,13 +1,16 @@
 FROM jenkins/jenkins:lts-jdk11
 
+#skip wizard
 ENV JENKINS_USER=admin
 ENV JENKINS_PASS=admin
 ENV JAVA_OPTS=-Djenkins.install.runSetupWizard=false
 
+#install plugins
 USER root
 ADD plugins.txt .
 RUN jenkins-plugin-cli -f plugins.txt
 
+#install maven
 RUN apt-get upgrade -y
 RUN apt-get update
 RUN apt-get install -y maven
@@ -23,5 +26,6 @@ RUN add-apt-repository \
        $(lsb_release -cs) stable"
 RUN apt-get update && apt-get install -y docker-ce-cli
 
+#run jenkins
 ADD start.sh .
 ENTRYPOINT [ "/start.sh" ]
