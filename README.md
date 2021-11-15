@@ -112,3 +112,28 @@ Pasos para utilizar el cliente:
 2) Bases de datos: Para esta entrega se utilizó una única base de datos que está en la nube, con el objetivo de simular la separación de datos, cada microservicio se conecta a un esquema distinto, cada esquema tiene sus propias tablas independientes, el cual se puede ver en el archivo application.properties de cada servicio respectivo. Cuando se suban los servicios a contenedores la arquitectura se asemejará más al diagrama de despliegue adjunto.
 3) Autenticación: Para la autenticación se utilizó JWT (Json Web Tokens) dado que es una herramienta que no tiene estado, la operación de cerrar sesión se implementa del lado del cliente, es decir el cliente debe limpiar su propio token de autenticación y adicionalmente el JWT quedará inválido una vez alcance la fecha de expiración (10 horas).
 
+## Proceso de modelado
+
+### Levantamiento de requisitos
+
+#### Diagrama de casos de uso
+
+![](Diseño/Use Case Diagram.png)
+
+### Diseño
+
+#### Diagrama de clases
+
+![](Diseño/Class Diagram.png)
+
+#### Diagrama de componentes
+
+![](Diseño/Component Diagram.png)
+
+#### Diagrama de despliegue
+
+![](Diseño/Deployement Diagram.png)
+
+#### Diagrama E-R
+
+![](Diseño/E-R Diagram.png)
