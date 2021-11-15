@@ -118,22 +118,22 @@ Pasos para utilizar el cliente:
 
 #### Diagrama de casos de uso
 
-![](Diseño/Use Case Diagram.png)
+![](Diseño/Use%20Case%20Diagram.png)
 
 ### Diseño
 
 #### Diagrama de clases
 
-![](Diseño/Class Diagram.png)
+![](Diseño/Class%20Diagram.png)
 
 #### Diagrama de componentes
 
-![](Diseño/Component Diagram.png)
+![](Diseño/Component%20Diagram.png)
 
 #### Diagrama de despliegue
 
-![](Diseño/Deployement Diagram.png)
+![](Diseño/Deployement%20Diagram.png)
 
 #### Diagrama E-R
 
-![](Diseño/E-R Diagram.png)
+![](Diseño/E-R%20Diagram.png)
