@@ -1,12 +1,5 @@
 # Wiki
 
-**Nota del equipo de desarrollo:**
-
-Al poseer un repositorio privado carecemos del apartado "Wiki", por ende, hemos optado por agregar el video de la demostración en esta sección del readme. Puede acceder al video dando click en la siguiente imagen:
-[![Video de demostración](https://img.youtube.com/vi/11FM1C5ZqJk/0.jpg)](https://www.youtube.com/watch?v=11FM1C5ZqJk)
-
-Adicionalmente en la carpeta de Diseño podrá encontrar los diagramas de diseño respectivos para esta entrega.
-
 # MicroTravels
 A continuación se detallan la instrucciones de instalación y ejecución del servidor MicroTravels. Así mismo, se describe la forma en que se pueden consumir los servicios a través de un cliente postman.
 
@@ -111,29 +104,3 @@ Pasos para utilizar el cliente:
 1) Servicio SOAP: Para abrir el WSDL se debe ejecutar el comando 'mvn clean install spring-boot:run' en la carpeta 'SearchService' y por defecto el WSDL se econtrará en la ruta http://localhost:2220/ws/tourismServices.wsdl
 2) Bases de datos: Para esta entrega se utilizó una única base de datos que está en la nube, con el objetivo de simular la separación de datos, cada microservicio se conecta a un esquema distinto, cada esquema tiene sus propias tablas independientes, el cual se puede ver en el archivo application.properties de cada servicio respectivo. Cuando se suban los servicios a contenedores la arquitectura se asemejará más al diagrama de despliegue adjunto.
 3) Autenticación: Para la autenticación se utilizó JWT (Json Web Tokens) dado que es una herramienta que no tiene estado, la operación de cerrar sesión se implementa del lado del cliente, es decir el cliente debe limpiar su propio token de autenticación y adicionalmente el JWT quedará inválido una vez alcance la fecha de expiración (10 horas).
-
-## Proceso de modelado
-
-### Levantamiento de requisitos
-
-#### Diagrama de casos de uso
-
-![](Diseño/Use%20Case%20Diagram.png)
-
-### Diseño
-
-#### Diagrama de clases
-
-![](Diseño/Class%20Diagram.png)
-
-#### Diagrama de componentes
-
-![](Diseño/Component%20Diagram.png)
-
-#### Diagrama de despliegue
-
-![](Diseño/Deployement%20Diagram.png)
-
-#### Diagrama E-R
-
-![](Diseño/E-R%20Diagram.png)
