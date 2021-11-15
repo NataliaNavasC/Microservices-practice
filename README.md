@@ -16,7 +16,7 @@ Para la instalación debe clonar el repositorio y, adicional a ello, tener los s
 * Java 11 o superior
 * Maven 3.8.2
 
-## ¿Cómo ejecutar el servidor?
+### ¿Cómo ejecutar el servidor?
 El servidor consta de 9 servicios los cuales se ejecutan por defecto en los siguientes puertos:
 
 |       Servicio       | Puerto por defecto |
@@ -41,7 +41,7 @@ Los servicios del sistema (a excepción de eureka y gateway) pueden ser ejecutad
 > 
 > mvn spring-boot:run
 
-#### Pasos para ejecutar el servidor
+### Pasos para ejecutar el servidor
 De forma general, utilice el siguiente comando para correr cualquier servicio: 
 > mvn clean install spring-boot:run
 1. Ejecutar el eureka server
@@ -51,7 +51,7 @@ De forma general, utilice el siguiente comando para correr cualquier servicio:
 ### Consumo de servicios
 A continuación se listan los servicios ofrecidos por el sistema. 
 
-#### Servicios usuarios
+### Servicios usuarios
 Provee todos los servicios requeridos para el control de sesión de los usuarios, es decir:
 * Registrar turista
 * Registrar proveedor
@@ -60,19 +60,19 @@ Provee todos los servicios requeridos para el control de sesión de los usuarios
 * Eliminar registro de turista
 * Eliminar registro de proveedor
 
-#### Servicios turistas
+### Servicios turistas
 Provee todos los servicios requeridos para la gestión de los turistas:
 * Obtener todos los turistas registrados
 * Buscar turista por id
 * Actualizar información de un turista
 
-#### Servicios proveedores
+### Servicios proveedores
 Provee todos los servicios requeridos para la gestión de los proveedores:
 * Obtener todos los proveedores registrados
 * Buscar proveedor por id
 * Actualizar información de un proveedor
 
-#### Servicios de los servicios de turismo
+### Servicios de los servicios de turismo
 Provee todos los servicios requeridos para la gestión de los servicios de turismo. Se tienen cuatro tipos de servicios: Accomodation, EcoTrip, Transport y Food. Cada uno de los servicios anteriormente mencionados ofrece los siguientes servicios:
 * Crear un servicio
 * Obtener servicio por id
@@ -80,7 +80,7 @@ Provee todos los servicios requeridos para la gestión de los servicios de turis
 * Eliminar un servicio
 * Actualizar información de un servicio
 
-#### Servicios de compra
+### Servicios de compra
 Provee todos los servicios requeridos para el manejo del carrito de compras y la realización del pago
 * Crear carrito de compra
 * Obtener carrito de compra dado un nombre de usuario
@@ -88,12 +88,12 @@ Provee todos los servicios requeridos para el manejo del carrito de compras y la
 * Eliminar un servicio del carrito de compras
 * Realizar pago
 
-#### Servicios de preguntas
+### Servicios de preguntas
 Provee todos los servicios requeridos para la gestión de las preguntas de un servicio de turismo:
 * Crear una pregunta para un servicio de turismo específico
 * Obtener todas las preguntas de un servicio de turismo dado su id
 
-#### Servicios de búsqueda
+### Servicios de búsqueda
 Este es un servicio SOAP, para poder consumirlo, remitirse al apartado de cliente.
 
 ## Cliente
