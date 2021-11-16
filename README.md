@@ -26,8 +26,6 @@ El servidor consta de 9 servicios los cuales se ejecutan por defecto en los sigu
 
 Los servicios del sistema (a excepción de eureka y gateway) pueden ser ejecutados en múltiples instancias, para ello, debe cambiar el puerto en que se ejecutan por defecto. Para cambiar los puertos utilice los siguientes comandos:
 
-* IOS: 
-> SERVER_PORT=#### mvn spring-boot:run
 
 * Windows:
 > SET SERVER_PORT=####
