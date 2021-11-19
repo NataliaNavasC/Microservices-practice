@@ -23,6 +23,7 @@ El servidor consta de 9 servicios los cuales se ejecutan por defecto en los sigu
 |    purchases-service    |          4440          |
 |    questions-service    |          3330          |
 |     search-service      |          2220          |
+|     external-service      |          1025          |
 
 Los servicios del sistema (a excepción de eureka y gateway) pueden ser ejecutados en múltiples instancias, para ello, debe cambiar el puerto en que se ejecutan por defecto. Para cambiar los puertos utilice los siguientes comandos:
 
