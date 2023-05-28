@@ -1,4 +1,11 @@
 # Wiki
+https://github.com/AEDRA-TG/MicroTravels.git
+
+# Authors 
+- Andrés Giraldo
+- Julio Mejía 
+- Daniel Beltrán
+- Natalia Navas
 
 # MicroTravels
 A continuación se detallan la instrucciones de instalación y ejecución del servidor MicroTravels. Así mismo, se describe la forma en que se pueden consumir los servicios a través de un cliente postman.
